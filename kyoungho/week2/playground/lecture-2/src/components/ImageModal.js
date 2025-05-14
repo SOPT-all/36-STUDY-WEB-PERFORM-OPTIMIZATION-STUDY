@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import ImageGallery from 'react-image-gallery'
 import 'react-image-gallery/styles/css/image-gallery.css'
@@ -39,6 +39,13 @@ const ImageModal = (props) => {
             thumbnail: 'https://stillmed.olympic.org/media/Photos/2016/08/20/part-1/20-08-2016-Football-Men-03.jpg?interpolation=lanczos-none&resize=*:150',
         },
     ]
+
+    useEffect(() => {
+        images.forEach(item => {
+            const img = new Image();
+            img.src = item.original;
+        });
+    }, []);
 
     return (
         <ImageModalWrapper>
