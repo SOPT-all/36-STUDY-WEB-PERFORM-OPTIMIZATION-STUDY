@@ -15,11 +15,11 @@
     "tailwindcss": "^1.1.4"
   },
   "scripts": {
-    "start": "npm run build:style && react-scripts start",
-    "build": "npm run build:style && react-scripts build",
+    "start": "NODE_OPTIONS=--openssl-legacy-provider npm run build:style && react-scripts start",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider npm run build:style && react-scripts build",
     "build:style": "postcss src/tailwind.css -o src/styles.css",
-    "serve": "node ./server/server.js",
-    "server": "node ./node_modules/json-server/lib/cli/bin.js --watch ./server/database.json -c ./server/config.json"
+    "serve": "NODE_OPTIONS=--openssl-legacy-provider node ./server/server.js",
+    "server": "NODE_OPTIONS=--openssl-legacy-provider node ./node_modules/json-server/lib/cli/bin.js --watch ./server/database.json -c ./server/config.json"
   },
   "eslintConfig": {
     "extends": "react-app"

@@ -3,7 +3,7 @@ import React from 'react'
 import Tabs from '../components/Tabs'
 import BannerImage from '../components/BannerImage'
 import YoutubePlayer from '../components/YoutubePlayer'
-import main_styles from '../assets/main-styles.jpg'
+import main_styles from '../assets/main-styles.webp'
 
 function RidingStylesPage(props) {
 	const opts = {
