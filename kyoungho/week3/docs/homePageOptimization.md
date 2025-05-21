@@ -184,7 +184,29 @@
         -   이미지 다운로드 약 **100밀리초** 소요
     -   ==이미지 사이즈 최적화를 통해 로딩 속도 대폭 개선됨이 확인 가능하다==
 
+---
 
+- Intersection Observer 기반 지연 로딩
+``` typescript
+useEffect(()=>{
+  const observer = new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if (entry.isIntersecting) {
+        const img = entry.target as HTMLImageElement;
+        img.src = img.dataset.src!;
+        observer.unobserve(img);
+      }
+    });
+  });
+  document.querySelectorAll('img[data-src]').forEach(img=>observer.observe(img));
+  return ()=>observer.disconnect();
+},[]);
+```
 
-
-  
+- picture 태그로 WebP/JPG 호환 처리
+``` typescript
+<picture>
+  <source data-srcset="image.webp" type="image/webp">
+  <img data-src="image.jpg" alt="…" />
+</picture>
+```
