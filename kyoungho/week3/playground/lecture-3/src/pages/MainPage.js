@@ -4,12 +4,12 @@ import ThreeColumns from '../components/ThreeColumns'
 import TwoColumns from '../components/TwoColumns'
 import Card from '../components/Card'
 import Meta from '../components/Meta'
-import main1 from '../assets/main1.jpg'
-import main2 from '../assets/main2.jpg'
-import main3 from '../assets/main3.jpg'
-import main_items from '../assets/main-items.jpg'
-import main_parts from '../assets/main-parts.jpg'
-import main_styles from '../assets/main-styles.jpg'
+import main1 from '../assets/main1.webp'
+import main2 from '../assets/main2.webp'
+import main3 from '../assets/main3.webp'
+import main_items from '../assets/main-items.webp'
+import main_parts from '../assets/main-parts.webp'
+import main_styles from '../assets/main-styles.webp'
 
 function MainPage(props) {
 	return (

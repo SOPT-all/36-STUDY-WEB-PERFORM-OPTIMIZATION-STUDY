@@ -3,7 +3,7 @@ import axios from 'axios'
 
 import BannerImage from '../components/BannerImage'
 import ItemGrid from '../components/ItemGrid'
-import main_items from '../assets/main-items.jpg'
+import main_items from '../assets/main-items.webp'
 
 function ItemsPage(props) {
 	const [items, setItems] = useState([])
