@@ -103,7 +103,7 @@ function removeSpecialCharacter(str) {
 - 실행하면 서비스의 번들 파일과 모든 패키지를 실제 크기에 따라 비율로 보여줌
 
     ![alt text](images/1-49.png)
-- 크기가 가장 큰 2.chunk.js의 하위 요소에 node_modules가 있는 것으로 보아, 이 번들 파일이 담고 있는 코드가 npm을 통해 설치한 외부 라이브러이임을 알 수 있음
+- 크기가 가장 큰 2.chunk.js의 하위 요소에 node_modules가 있는 것으로 보아, 이 번들 파일이 담고 있는 코드가 npm을 통해 설치한 외부 라이브러리임을 알 수 있음
     - 2.chunk.js의 내부
         - refactor
 
