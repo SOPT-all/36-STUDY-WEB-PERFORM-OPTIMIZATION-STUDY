@@ -8,7 +8,7 @@ But 문제,, 여전히 용량이 너무 커서 다운받는 시간이 일정 이
 
 ## 동영상 압축
 
-### \*\* 동영상 사이즈를 줄여보자! == 화질을 낮추는 작업
+### ** 동영상 사이즈를 줄여보자! == 화질을 낮추는 작업
 
 메인 컨텐츠가 동영상이 아닐 경우에만 추천!
 
@@ -20,7 +20,7 @@ But 문제,, 여전히 용량이 너무 커서 다운받는 시간이 일정 이
 
 ### ✅ 압축된 동영상 적용
 
-파일이름에 \_ 붙여서 assets로 넣어주기
+파일이름에 _ 붙여서 assets로 넣어주기
 
 우리 앞에서 이미지 최적화해서 webP 쓸 때 브라우저 호환성 위해 picture 태그!
 
@@ -28,12 +28,14 @@ But 문제,, 여전히 용량이 너무 커서 다운받는 시간이 일정 이
 
 ### ✅ 화질을 조금이라도 개선하고 싶다면?
 
-\***\* 패턴과 필터 이용하기**
+**** 패턴과 필터 이용하기**
 
 동영상 위해 패턴이나 필터 넣으면 → 그거에 가려져서 동영상 화질 저하를 눈치채지 못함ㅋㅋ
 
 - blur 효과!
-  `filter : blur(10px)` 처리해주면 영상이 흐려지면서, 배경으로 가볍게 사용 ㄱㄴ
+    
+    `filter : blur(10px)` 처리해주면 영상이 흐려지면서, 배경으로 가볍게 사용 ㄱㄴ
+    
 
 ## 폰트 최적화
 
@@ -48,11 +50,17 @@ fast3G로 새로고침해보면 → 텍스트가 나중에야 뒤늦게 변함
 폰트의 변화로 발생하는 이 현상을 FOUT, FOIT라고 함!
 
 - **FOUT**
-  먼저 텍스트를 보여준 후에 다운로드 다 되면 그제서야 적용! (엣지)
+    
+    먼저 텍스트를 보여준 후에 다운로드 다 되면 그제서야 적용! (엣지)
+    
 - **FOIT**
-  폰트가 완전히 다운로드 될때까지 텍스트를 보여주지 않음 (사파리, 크롬)
-  - 3초 FOIT도 있음 ㅋㅋ
-    3초 동안 텍스트 없이 폰트 다운 기다리다가, 3초 넘어가면 그냥 우선 기본 포트로 보여줌!
+    
+    폰트가 완전히 다운로드 될때까지 텍스트를 보여주지 않음 (사파리, 크롬)
+    
+    - 3초 FOIT도 있음 ㅋㅋ
+        
+        3초 동안 텍스트 없이 폰트 다운 기다리다가, 3초 넘어가면 그냥 우선 기본 포트로 보여줌!
+        
 
 ![image.png](attachment:1fe876d3-49b8-459c-bf16-c2b4e2f5db30:image.png)
 
@@ -62,41 +70,50 @@ fast3G로 새로고침해보면 → 텍스트가 나중에야 뒤늦게 변함
 
 중요한 텍스트 (뉴스 제목) 이면 → FOIT 방식은 안 좋을 수 있음
 
-근데 꼭 전달안해도 되는 텍스트는 → FOUT 방식 했다가 오히려 폰트변화로 시선을 분산하는 문제
+근데 꼭 전달안해도 되는 텍스트는 →  FOUT 방식 했다가 오히려 폰트변화로 시선을 분산하는 문제
 
 - CSS 속성 사용하기 : `font-display` 속성
-
-  - auto : 브라우저 기본 동작
-  - block : FOIT (timeout = 3s)
-  - swap : FOUT 방식
-  - fallback : FOIT (timeout = 0.1s) (3초 지나면 기본 폰트로 유지하다가 그냥 냅둠)
-  - optional : FOIT (timeout = 0.1s) (네트워크 상태에 따라 기본 폰트로 유지하다가 이후에 캐시)
-
-  fallback과 optional 차이 : 그냥 몇 초까지 기다리냐 차이, 근데 fallback은 3초후에도 다운안되면 이후에 다운로드 되더라고 폰트 적용 x
+    - auto : 브라우저 기본 동작
+    - block : FOIT (timeout = 3s)
+    - swap : FOUT 방식
+    - fallback : FOIT (timeout = 0.1s) (3초 지나면 기본 폰트로 유지하다가 그냥 냅둠)
+    - optional : FOIT (timeout = 0.1s) (네트워크 상태에 따라 기본 폰트로 유지하다가 이후에 캐시)
+    
+    fallback과 optional 차이 : 그냥 몇 초까지 기다리냐 차이, 근데 fallback은 3초후에도 다운안되면 이후에 다운로드 되더라고 폰트 적용 x
+    
 
 - 해당 실습의 텍스트 특징 : 중요한게 아님, 빠르게 보여줄 필요도 없음
-  ⇒ FOIT 방식으로 나중에 적용해서 한번에 보여주자~!
-  ⇒ 근데 갑자기 나타나서 좀 어색할 수 있듬
-  ⇒ 이건 그럼? Fade-In 효과 처리해버리자~~
-  ⇒ 그럼 폰트 적용된 시점을 알아야지 fadeIn 처리 가능
+    
+    ⇒ FOIT 방식으로 나중에 적용해서 한번에 보여주자~!
+    
+    ⇒ 근데 갑자기 나타나서 좀 어색할 수 있듬
+    
+    ⇒ 이건 그럼? Fade-In 효과 처리해버리자~~
+    
+    ⇒ 그럼 폰트 적용된 시점을 알아야지 fadeIn 처리 가능
+    
 - **폰트 적용시점 : fontfaceobserver 활용!**
-  폰트 BMYEONSUNG을 observe 하자
-  ```jsx
-  import FontFaceObserver from "fontfaceobserver";
-
-  const font = new FontFaceObserver("BMYEONSUNG");
-
-  function BannerVideo() {
-    useEffect(() => {
-      font.load(null, 2000).then(function () {
-        console.log("BMYEONSUNG has loaded");
-        setIsFontLoaded(true);
-      });
-    }, []);
-  }
-  // isFonted가 true이면 이제 다 로드된거임!
-  ```
-  로드 상태에 따라서 transition과 opacity 조절해주면 됨
+    
+    폰트 BMYEONSUNG을 observe 하자
+    
+    ```jsx
+    import FontFaceObserver from 'fontfaceobserver'
+    
+    const font = new FontFaceObserver('BMYEONSUNG')
+    
+    function BannerVideo() {
+    	useEffect (() => {
+    		font.load(null,2000).then(function(){
+    			console.log('BMYEONSUNG has loaded')
+    			setIsFontLoaded(true)
+    		})
+    	},[])
+    }		
+    // isFonted가 true이면 이제 다 로드된거임!
+    ```
+    
+    로드 상태에 따라서 transition과 opacity 조절해주면 됨
+    
 
 ### 2. 폰트 파일 크기 줄이기
 
@@ -116,7 +133,7 @@ WOFF와 WOFF2에도 호환성 문제가 있으니까
 
 WOFF2 우선 적용하고 → WOFF → TTF 순으로 적용
 
-**Transfonter 사이트 ⇒ 변환하면 됨!**
+**Transfonter 사이트 ⇒ 변환하면 됨!** 
 
 **✅ 방법2. 서브셋 폰트 사용**
 
@@ -134,7 +151,7 @@ WOFF2 우선 적용하고 → WOFF → TTF 순으로 적용
 
 문자열데이터 형태로, 인라인 삽입해버리기~ Data-URI상태로 만들어서 app.css에 넣어둠
 
-Base64 encode옵션으로 Data-URI 형태로 추출!
+Base64 encode옵션으로 Data-URI 형태로 추출! 
 
 **transfonter로 WOFF2파일 업로드 → Formats에서 WOFF2선택 → Base64 encode를 ON**
 
@@ -153,19 +170,20 @@ Cache-control이란 헤더가 없는걸 알 수 있음 (npm run start 로 실행
 자주 사용하는 데이터나 값을 미리 임시 저장 (최초에만 다운해서 캐시에 저장해두고, 그 이후는 그거 씀)
 
 - **종류 (네트워크 패널에서 볼 수 있듬 : Disable cache 설정을 꺼야 확인 ㄱㄴ)**
-  1. 메모리 캐시 : 메모리에 저장하는 방식 ex) RAM
-  2. 디스크 캐시 : 파일 형태로 디스크에 저장
-  ![image.png](attachment:f1f88498-b9bf-4230-88d2-d4e534dc8bd1:image.png)
+    1. 메모리 캐시 : 메모리에 저장하는 방식 ex) RAM
+    2. 디스크 캐시 : 파일 형태로 디스크에 저장
+    
+    ![image.png](attachment:f1f88498-b9bf-4230-88d2-d4e534dc8bd1:image.png)
+    
 
 ### Cache-Control
 
 리소스의 응답 헤더에 설정되는 헤더로, 어떻게 얼마나 캐시 적용하는 지 판단함!
 
 - **조합**
-
 1. no-cache : 캐시 사용하기 전에 서버 검사 후에 사용! (서버에 캐시된 리소스 사용 확인먼저 )
-2. no-store : 캐시 사용 안함
-3. public : 모든 환경에서 캐시 사용 가능
+2. no-store : 캐시 사용 안함 
+3. public : 모든 환경에서 캐시 사용 가능 
 4. private : 브라우저 환경에서만 캐시 사용 가능 (외부 캐시 서버는 x)
 5. max-age : 캐시의 유효 기간
 
@@ -177,7 +195,7 @@ Cache-control이란 헤더가 없는걸 알 수 있음 (npm run start 로 실행
 
 (max-age는 초단위로 얼마나 오래 캐시 사용할지!)
 
-ex) `Cache-control : max-age = 60`
+ex) `Cache-control : max-age = 60` 
 
 1분동안 캐시 사용하고 기본값 public으로 모든환경에서 !
 
@@ -197,10 +215,10 @@ setHeaders함수에서! 지정해주면 됨!
 
 ```jsx
 const header = {
-  setHeaders: (res, path) => {
-    res.setHeader("Cache-Control", "max-age=10");
-  },
-};
+	setHeaders : (res,path) => {
+		res.setHeader('Cache-Control', 'max-age=10')
+	}
+}
 ```
 
 일정 유효 시간 지나면 → 다시 서버한테 확인 받음
@@ -213,7 +231,7 @@ const header = {
 
 `31536000` 는 우선 1년을 의미
 
-HTML : 일반적으로 변경사항 없을 떄만! no-cache를 적용함
+HTML : 일반적으로 변경사항 없을 떄만! no-cache를 적용함 
 
 JS와 CSS: 파일 명에 해시를 함께 가짐! 코드가 변경되면 해시도 변경돼서 다른 파일이 됨!
 
@@ -262,3 +280,32 @@ if 문이 걸려있는 거라던가 분기 코드 등등때문일 수 있기에!
 ### 그럼 어떻게 제거?
 
 ### PurgeCSS 툴 사용!
+
+: 파일에 있는 키워드를 추출하여, 해당 키워드인 이름의 css 클래스만 보존! 아닌 건 지워버림
+
+ex) TailwindCSS라 할때
+
+Tailwind에서 제공하는 유틸리티 클래스 이름 일치하는 거 빼고는 다 제거!
+
+`npm install —save-dev purgecss` 로 우선 설치하기!
+
+불필요한 클래스 제거할 CSS 지정
+
+- - - output : 동일한 위치 지정으로, CSS 기존꺼 덮어씀
+- - - content : 키워드를 추출할 파일
+
+하고 `npm run purge` 해주면, 사용하지 않는 코드 비율 줄어듦!
+
+** 이때, css가 일부 잘 안 먹는 문제!
+
+이건 콜론 `:`  이 문자를 인식하지 못하고 잘라버려서 그런겨!
+
+`lg:m-8` 을  `lg`, `m-8` 일케 따로따로 인식하게 됨
+
+```jsx
+module.exports = {
+	defaultExtractor: (content) => content.match(/[\w\:\-]+/g) || []
+}
+```
+
+이렇게 purgecss.config.css에서 설정 추가해주면 됨!
