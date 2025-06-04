@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useMemo } from 'react';
+import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import PhotoList from '../components/PhotoList';
 import { fetchPhotos } from '../redux/photos';
 
@@ -10,15 +10,21 @@ function PhotoListContainer() {
     dispatch(fetchPhotos());
   }, [dispatch]);
 
-  const { photos, loading } = useSelector(state => ({
-    photos:
-      state.category.category === 'all'
-        ? state.photos.data
-        : state.photos.data.filter(
-            photo => photo.category === state.category.category
-          ),
+  // 방법 2: shallowEqual을 사용한 객체 비교 + 필터링 로직 분리
+  const { photosData, loading } = useSelector(state => ({
+    photosData: state.photos.data,
     loading: state.photos.loading,
-  }));
+  }), shallowEqual);
+
+  const currentCategory = useSelector(state => state.category.category);
+
+  // useMemo를 사용하여 필터링된 photos 배열을 메모이제이션
+  const filteredPhotos = useMemo(() => {
+    if (currentCategory === 'all') {
+      return photosData;
+    }
+    return photosData.filter(photo => photo.category === currentCategory);
+  }, [photosData, currentCategory]);
 
   if (loading === 'error') {
     return <span>Error!</span>;
@@ -28,7 +34,7 @@ function PhotoListContainer() {
     return <span>loading...</span>;
   }
 
-  return <PhotoList photos={photos} />;
+  return <PhotoList photos={filteredPhotos} />;
 }
 
 export default PhotoListContainer;
