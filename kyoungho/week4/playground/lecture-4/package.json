@@ -17,7 +17,7 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "NODE_OPTIONS='--openssl-legacy-provider' react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -44,5 +44,8 @@
   "devDependencies": {
     "json-server": "^0.16.3",
     "redux-devtools-extension": "^2.13.9"
+  },
+  "overrides": {
+    "postcss": "^8.4.38"
   }
 }
