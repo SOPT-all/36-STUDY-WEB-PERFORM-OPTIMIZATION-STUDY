@@ -4,9 +4,7 @@
 $ git clone https://github.com/performance-lecture/lecture-4.git
 ```
 
-![image.png](attachment:d701067c-c504-4c4d-a94e-d441141d74ce:image.png)
-
-![image.png](attachment:dc6ae040-46cf-46ba-9a0f-6188908635df:image.png)
+![image](https://github.com/user-attachments/assets/48778022-eac2-49c3-83e0-334a2f69c626)
 
 갤러리 속에 이미지들이 있고 → 클릭하면 그 이미지가 큰 화면으로 → 뒤에 배경은 비슷한 색
 
@@ -115,7 +113,7 @@ CLS 점수가 0에 가까우면, 레이아웃 이동이 안 일어난 거임. �
 
    (만약에 1:1 비율이면 padding-top : 100%)
 
-![image.png](attachment:5219f67b-2c9a-4b4d-a122-7e0e12345064:image.png)
+![image](https://github.com/user-attachments/assets/c13c2701-f7d8-4c1a-b537-d6b1305b6173)
 
 1. **아예 aspect-ratio 속성에 비율만 명시해줘도 됨**
 
@@ -231,7 +229,7 @@ getAverageColorOfImage 함수가 굉장히 느림을 알 수 있음
 
 메모이제이션 == 한번 실행한 함수에 대해 해당 반환값을 기억해두고 있다가 똑같은 조건으로 실행되면 바로 전에 값을 반환하는 기법!
 
-![image.png](attachment:3cf9afd2-60b7-4aef-8d88-a61cdf153b78:image.png)
+![image](https://github.com/user-attachments/assets/16ef4373-c2fd-45db-b4b3-d39ad90a36f9)
 
 cache[n]=result넣어두고,
 
@@ -239,7 +237,7 @@ if (cache[n]) 이면 바로 result를 리턴해버리기
 
 그럼 얘도 아까 그 함수에 적용해보면
 
-![image.png](attachment:3a1f6e8b-ec1c-4774-bceb-3e5aac03c621:image.png)
+![image](https://github.com/user-attachments/assets/ad23a709-1102-4345-8830-451d6643779a)
 
 하지만, 메모이제이션의 단점 = 여전히 첫 실행시에는 변화가 없음..여전히 계산해야하므로
 
@@ -252,4 +250,5 @@ if (cache[n]) 이면 바로 result를 리턴해버리기
 - 그럼 우선 이미지 사이즈부터 줄이자!’
   ⇒ 원본 이미지가 아니라, 섬네일 배경 이미지로 계산하게 하자, 그럼, 원본 다운 후에 배경색 계산하는게 아니라 썸네일만으로 가능해지니까 오히려 더 빠르기도 함
 
-![image.png](attachment:eb5971aa-86e7-4162-9fba-581d4ff1832a:image.png)
+![image](https://github.com/user-attachments/assets/0815435a-f47d-4253-ab9a-91a16471b190)
+
