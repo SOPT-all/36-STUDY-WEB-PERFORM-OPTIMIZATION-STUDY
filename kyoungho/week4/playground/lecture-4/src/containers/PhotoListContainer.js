@@ -23,18 +23,21 @@ function PhotoListContainer() {
     if (currentCategory === 'all') {
       return photosData;
     }
-    return photosData.filter(photo => photo.category === currentCategory);
-  }, [photosData, currentCategory]);
+    const filtered = photosData.filter(photo => photo.category === currentCategory);
+    return filtered;
+  }, [currentCategory, photosData]);
 
   if (loading === 'error') {
     return <span>Error!</span>;
   }
 
   if (loading !== 'done') {
-    return <span>loading...</span>;
+    return <span>Loading...</span>;
   }
 
-  return <PhotoList photos={filteredPhotos} />;
+  return (
+    <PhotoList photos={filteredPhotos} />
+  );
 }
 
 export default PhotoListContainer;
