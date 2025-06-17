@@ -1,6 +1,11 @@
-import { globalStyle } from '@vanilla-extract/css';
+import { globalFontFace, globalStyle } from '@vanilla-extract/css';
 import '@styles/layers.css';
 import '@styles/reset.css';
+
+globalFontFace('Pretendard', {
+  src: 'url("/assets/fonts/PretendardVariable.woff2") format("woff2-variations")',
+  fontDisplay: 'block',
+});
 
 globalStyle('html', {
   fontSize: '62.5%',
