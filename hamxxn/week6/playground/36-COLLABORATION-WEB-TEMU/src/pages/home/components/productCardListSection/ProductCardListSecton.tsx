@@ -8,16 +8,13 @@ import useFilterCard from '@pages/home/hooks/useFilterCard';
 import { mockProducts } from './mockupData';
 
 const ProductCardListSection = () => {
-  const data = mockProducts;
   const [visibleCount, setVisibleCount] = useState(9);
 
-  const searchedList = data;
-
   const { selectedTag, filteredCards, handleTagClick } = useFilterCard({
-    productList: searchedList,
+    productList: mockProducts,
     isLoading: false,
   });
-  console.log(filteredCards);
+
   const handleShowMore = () => {
     setVisibleCount(prev => prev + 9);
   };

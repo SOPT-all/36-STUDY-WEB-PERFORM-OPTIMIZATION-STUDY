@@ -4,8 +4,7 @@ import type { GetPromotionResponseTypes } from '@pages/home/types/response';
 import { mockProducts } from './mockupData';
 
 const PromotionCardList = () => {
-  const data = mockProducts;
-  const promotionData = data.slice(0, 5) ?? [];
+  const promotionData = mockProducts[5] ? mockProducts.slice(0, 5) : mockProducts;
 
   return (
     <div className={styles.forwardListWrapper}>
