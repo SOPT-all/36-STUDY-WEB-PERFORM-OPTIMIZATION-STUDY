@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { SmallArrowRightIcon } from '@assets/svgs';
+// SVG 컴포넌트를 실제 SVG 파일로 변경
 import * as S from './NavigationButton.style';
 
 interface NavigationButtonProps {
@@ -39,7 +39,7 @@ const NavigationButton = ({
         {count !== undefined && <span css={S.countStyle}>{count}</span>}
 
         <div css={S.iconContainer}>
-          <SmallArrowRightIcon css={S.iconStyle} />
+          <img src="/svgs/smallarrowright-icon.svg" alt="Arrow Right" css={S.iconStyle} />
         </div>
       </button>
     </div>

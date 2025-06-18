@@ -1,6 +1,6 @@
 import * as S from './SectionTitle.style';
 import theme from '@styles/theme';
-import { SmallArrowRightIcon } from '@assets/svgs';
+// SVG 컴포넌트를 실제 SVG 파일로 변경
 
 interface SectionTitleProps {
   title1: string;
@@ -32,7 +32,7 @@ const SectionTitle = ({
       </div>
       <button type="button" onClick={onClickAll} css={S.allButton}>
         <span css={S.allText}>전체보기</span>
-        <SmallArrowRightIcon />
+        <img src="/svgs/smallarrowright-icon.svg" alt="Arrow Right" />
       </button>
     </div>
     {subtitle && <span css={S.subtitle}>{subtitle}</span>}

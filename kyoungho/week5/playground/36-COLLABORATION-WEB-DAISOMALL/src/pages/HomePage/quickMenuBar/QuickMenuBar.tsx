@@ -1,14 +1,5 @@
 import * as S from './QuickMenuBar.style';
-import {
-  SnsIcon,
-  StoreSearchIcon,
-  PickupIcon,
-  HolidayArrivalIcon,
-  DeliveryIcon,
-  DeliverySortIcon,
-  EventIcon,
-  BizIcon,
-} from '@assets/svgs';
+// SVG 컴포넌트를 실제 SVG 파일로 변경
 
 interface QuickMenuItem {
   icon: React.ReactNode;
@@ -20,14 +11,14 @@ interface QuickMenuBarProps {
 }
 
 const QUICK_MENUS: QuickMenuItem[] = [
-  { icon: <SnsIcon width={34} />, label: 'SNS핫템' },
-  { icon: <StoreSearchIcon />, label: '매장재고' },
-  { icon: <PickupIcon />, label: '매장픽업' },
-  { icon: <HolidayArrivalIcon />, label: '휴일도착' },
-  { icon: <DeliveryIcon />, label: '정기배송' },
-  { icon: <DeliverySortIcon width={34} />, label: '대량주문' },
-  { icon: <EventIcon width={34} />, label: '이벤트' },
-  { icon: <BizIcon width={34} />, label: 'BIZ' },
+  { icon: <img src="/svgs/sns-icon.svg" alt="SNS" width={34} />, label: 'SNS핫템' },
+  { icon: <img src="/svgs/store-search-icon.svg" alt="Store Search" />, label: '매장재고' },
+  { icon: <img src="/svgs/pickup-icon.svg" alt="Pickup" />, label: '매장픽업' },
+  { icon: <img src="/svgs/holiday-arrival-icon.svg" alt="Holiday Arrival" />, label: '휴일도착' },
+  { icon: <img src="/svgs/delievery-icon.svg" alt="Delivery" />, label: '정기배송' },
+  { icon: <img src="/svgs/delivery-sort-icon.svg" alt="Delivery Sort" width={34} />, label: '대량주문' },
+  { icon: <img src="/svgs/event-icon.svg" alt="Event" width={34} />, label: '이벤트' },
+  { icon: <img src="/svgs/biz-icon.svg" alt="BIZ" width={34} />, label: 'BIZ' },
 ];
 
 const QuickMenuBar = ({ onStoreSearchClick }: QuickMenuBarProps) => (

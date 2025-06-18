@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { SmallArrowDownIcon } from '@assets/svgs';
+// SVG 컴포넌트를 실제 SVG 파일로 변경
 import * as S from './ViewMoreButton.style';
 
 interface ViewMoreButtonProps {
@@ -39,7 +39,7 @@ const ViewMoreButton = ({
           >
             <span css={S.textStyle}>{buttonText}</span>
             <div css={S.iconWrapperStyle}>
-              <SmallArrowDownIcon css={S.iconStyle} />
+              <img src="/svgs/smallarrowdown-icon.svg" alt="Arrow Down" css={S.iconStyle} />
             </div>
           </button>
         </div>

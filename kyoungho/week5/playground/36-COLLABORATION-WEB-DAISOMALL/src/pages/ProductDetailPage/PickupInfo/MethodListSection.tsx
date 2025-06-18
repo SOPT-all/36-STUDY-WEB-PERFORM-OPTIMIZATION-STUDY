@@ -1,9 +1,5 @@
 import * as S from './MethodListSection.style';
-import DeliveryIconTruck from '@assets/svgs/DeliveryIconTruck';
-import DeliveryIconCycle from '@assets/svgs/DeliveryIconCycle';
-import StoreIcon from '@assets/svgs/StoreIcon';
-import BetaMark from '@assets/svgs/BetaMark';
-import BoxIcon from '@assets/svgs/BoxIcon';
+// SVG 컴포넌트를 실제 SVG 파일로 변경
 import type { ReactNode } from 'react';
 
 interface MethodItemProps {
@@ -17,7 +13,7 @@ interface MethodItemProps {
 const MethodItem = ({ icon, name, date, isStore = false, isBeta = false }: MethodItemProps) => {
   return (
     <li css={[S.MethodItem, isStore && S.StoreMethodItem]}>
-      {isBeta && <BetaMark css={S.BetaIconStyle} />}
+      {isBeta && <img src="/svgs/BetaMark.svg" alt="Beta" css={S.BetaIconStyle} />}
       <div css={S.MethodItemContent}>
         <div css={S.IconWrapper}>
           {icon}
@@ -36,24 +32,24 @@ const MethodItem = ({ icon, name, date, isStore = false, isBeta = false }: Metho
 const MethodListSection = () => { 
   const methodItems: MethodItemProps[] = [
     {
-      icon: <DeliveryIconTruck />,
+      icon: <img src="/svgs/deliveryIconTruck.svg" alt="Delivery Truck" />,
       name: '택배배송',
       date: '4/29(화)\n도착예정',
     },
     {
-      icon: <StoreIcon />,
+      icon: <img src="/svgs/storeIcon.svg" alt="Store" />,
       name: '매장픽업',
       date: '4/28(월)\n픽업가능',
       isStore: true,
     },
     {
-      icon: <DeliveryIconCycle />,
+      icon: <img src="/svgs/deliveryIconCycle.svg" alt="Delivery Cycle" />,
       name: '오늘배송',
       date: '4/28(월)\n도착예정',
       isBeta: true,
     },
     {
-      icon: <BoxIcon />,
+      icon: <img src="/svgs/boxIcon.svg" alt="Box" />,
       name: '대량주문',
       date: '7일 이내\n도착예정',
     },

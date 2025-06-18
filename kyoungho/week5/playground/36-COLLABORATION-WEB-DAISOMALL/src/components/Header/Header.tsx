@@ -1,4 +1,4 @@
-import { BackIcon, CartIcon, Logo, SearchIcon, TohomeIcon } from '@assets/svgs';
+// SVG 컴포넌트를 실제 SVG 파일로 변경
 import * as S from './Header.style';
 import { useNavigate } from 'react-router-dom';
 
@@ -39,9 +39,11 @@ const Header = ({
   return (
     <div css={wrapperStyle}>
       <div css={S.LeftContainer}>
-        {showLogo && <Logo width={73} />}
+        {showLogo && <img src="/svgs/logo.svg" alt="Logo" width={73} />}
         {showBackButton && (
-          <BackIcon
+          <img
+            src="/svgs/back-icon.svg"
+            alt="Back"
             width={24}
             onClick={handleBackClick}
             style={{ cursor: 'pointer' }}
@@ -50,9 +52,9 @@ const Header = ({
         {showTitle && <p css={S.Title}>{title}</p>}
       </div>
       <div css={S.RightContainer}>
-        {showSearchIcon && <SearchIcon css={S.NavIcons} />}
-        {showHomeIcon && <TohomeIcon css={S.NavIcons} />}
-        {showCartIcon && <CartIcon css={S.NavIcons} />}
+        {showSearchIcon && <img src="/svgs/search-icon.svg" alt="Search" css={S.NavIcons} />}
+        {showHomeIcon && <img src="/svgs/tohome-icon.svg" alt="Home" css={S.NavIcons} />}
+        {showCartIcon && <img src="/svgs/cart-icon.svg" alt="Cart" css={S.NavIcons} />}
       </div>
     </div>
   );

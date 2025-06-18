@@ -1,6 +1,6 @@
+/** @jsxImportSource @emotion/react */
 import { useState } from 'react';
 import * as S from './SearchResultTitle.style';
-import SmallArrowDownIcon from '@assets/svgs/SmallArrowDownIcon';
 import type { SortOptionType } from '@app-types/apiResponseType';
 
 // 정렬 옵션 타입을 SortOptionType으로 통일y
@@ -58,8 +58,8 @@ const SearchResultTitle = ({
           type="button"
         >
           <span css={S.sortTextStyle}>{selectedSort}</span>
-          <div css={S.iconContainerStyle}>
-            <SmallArrowDownIcon css={S.iconStyle} />
+          <div css={S.iconWrapper}>
+            <img src="/svgs/small-arrow-down-icon.svg" alt="Arrow Down" css={S.iconStyle} />
           </div>
         </button>
 

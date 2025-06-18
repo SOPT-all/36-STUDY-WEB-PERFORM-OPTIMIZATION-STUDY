@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import * as S from './StoreSearchBar.style';
-import { LocationIcon, SearchIcon } from '@assets/svgs';
+// SVG 컴포넌트를 실제 SVG 파일로 변경
 
 interface StoreSearchBarProps {
   onSearch?: (keyword: string) => void;
@@ -31,9 +31,9 @@ const StoreSearchBar = ({ onSearch }: StoreSearchBarProps) => {
             onKeyDown={handleKeyDown}
           />
           <div css={S.IconGroup} onClick={handleSearch}>
-            <LocationIcon width={24} height={24} />
+            <img src="/svgs/location-icon.svg" alt="Location" width={24} height={24} />
             <div css={S.Divider} />
-            <SearchIcon width={24} height={24} />
+            <img src="/svgs/search-icon.svg" alt="Search" width={24} height={24} />
           </div>
         </div>
       </div>

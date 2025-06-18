@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { SmallArrowDownIcon, SmallArrowUpIcon } from '@assets/svgs';
+// SVG 컴포넌트를 실제 SVG 파일로 변경
 import Divider from '@components/common/divider/Divider';
 import * as S from './AccordionButton.style';
 
@@ -17,8 +17,9 @@ const AccordionButton = ({
   const [isOpen, setIsOpen] = useState(defaultOpen);
   const contentRef = useRef<HTMLDivElement>(null);
 
-  // 컴포넌트 상태에 따라 렌더링할 아이콘 결정
-  const ArrowIcon = isOpen ? SmallArrowUpIcon : SmallArrowDownIcon;
+  // 상태에 따라 아이콘 경로 결정
+  const arrowIconSrc = isOpen ? "/svgs/smallarrowup-icon.svg" : "/svgs/smallarrowdown-icon.svg";
+  const arrowIconAlt = isOpen ? "Arrow Up" : "Arrow Down";
 
   return (
     <div css={S.accordionContainer}>
@@ -30,7 +31,7 @@ const AccordionButton = ({
       >
         <span css={S.titleStyle}>{title}</span>
         <span css={S.iconStyle}>
-          <ArrowIcon />
+          <img src={arrowIconSrc} alt={arrowIconAlt} />
         </span>
       </button>
 

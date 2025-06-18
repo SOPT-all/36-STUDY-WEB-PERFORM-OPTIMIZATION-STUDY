@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import * as S from './ProductHeader.style';
-import { ArrowRightIcon } from '@assets/svgs';
+// SVG 컴포넌트를 실제 SVG 파일로 변경
 
 interface ProductHeaderProps {
   brandName?: string;
@@ -21,7 +21,7 @@ const ProductHeader = ({ brandName, productName, price }: ProductHeaderProps) =>
       <div css={S.Brand}>
         <span css={S.BrandText}>{brandName || ''}</span>
         <span css={S.RightArrowWrapper}>
-          <ArrowRightIcon css={S.RightArrow} />
+          <img src="/svgs/arrow-right-icon.svg" alt="Arrow Right" css={S.RightArrow} />
         </span>
       </div>
       <div css={S.NameAndPrice}>

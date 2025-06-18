@@ -1,4 +1,4 @@
-import { SmallArrowDownIcon } from '@assets/svgs';
+/** @jsxImportSource @emotion/react */
 import * as S from './Keywords.style';
 
 interface KeywordsProps {
@@ -17,7 +17,7 @@ const Keywords = ({ label, description, percent }: KeywordsProps) => (
       <div css={S.Percent}>{percent}%</div>
     </div>
 
-    <SmallArrowDownIcon css={S.ArrowIcon} />
+    <img src="/svgs/small-arrow-down-icon.svg" alt="Arrow Down" css={S.ArrowIcon} />
   </div>
 );
 

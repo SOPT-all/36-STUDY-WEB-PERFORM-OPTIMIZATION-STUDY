@@ -1,12 +1,4 @@
-import {
-  CategoryIconNew,
-  HomeIcon,
-  HomeIconActive,
-  MypageIcon,
-  OfflineSearchActive,
-  OfflineSearchLarge,
-  RecentIcon,
-} from '@assets/svgs';
+// SVG 컴포넌트를 실제 SVG 파일로 변경
 import * as S from './BottomNav.style';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
@@ -56,15 +48,15 @@ const BottomNav = () => {
   return (
     <nav css={[S.Wrapper, { transform: isVisible ? 'translateY(0)' : `translateY(${TOTAL_HIDE_HEIGHT_REM}rem)` }]}>
       <div css={S.Container}>
-        <CategoryIconNew css={S.BasicIcon} />
+        <img src="/svgs/_category-icon-new.svg" alt="Category" css={S.BasicIcon} />
         <p css={S.Caption}>카테고리</p>
       </div>
 
       <div css={S.Container} onClick={() => navigate('/')}>
         {selectedTab === 'home' ? (
-          <HomeIconActive css={S.HomeIcon} />
+          <img src="/svgs/home-icon-active.svg" alt="Home Active" css={S.HomeIcon} />
         ) : (
-          <HomeIcon css={S.HomeIcon} />
+          <img src="/svgs/home-icon.svg" alt="Home" css={S.HomeIcon} />
         )}
         <p css={S.Caption}>홈</p>
       </div>
@@ -72,21 +64,21 @@ const BottomNav = () => {
       <div css={S.CenterContainer} onClick={() => navigate('/store-list')}>
         {selectedTab !== 'offline' ? (
           <div css={S.CircleButton}>
-            <OfflineSearchLarge css={S.OfflineSearchIcon} />
+            <img src="/svgs/offline-search-large.svg" alt="Offline Search" css={S.OfflineSearchIcon} />
           </div>
         ) : (
-          <OfflineSearchActive css={S.OfflineSearchIconActive} />
+          <img src="/svgs/offline-search-active.svg" alt="Offline Search Active" css={S.OfflineSearchIconActive} />
         )}
         <p css={S.CenterCaption(selectedTab === 'offline')}>매장 상품 찾기</p>
       </div>
 
       <div css={S.Container}>
-        <RecentIcon css={S.BasicIcon} />
+        <img src="/svgs/recent-icon.svg" alt="Recent" css={S.BasicIcon} />
         <p css={S.Caption}>최근 본 상품</p>
       </div>
 
       <div css={S.Container}>
-        <MypageIcon css={S.BasicIcon} />
+        <img src="/svgs/mypage-icon.svg" alt="My Page" css={S.BasicIcon} />
         <p css={S.Caption}>마이페이지</p>
       </div>
     </nav>

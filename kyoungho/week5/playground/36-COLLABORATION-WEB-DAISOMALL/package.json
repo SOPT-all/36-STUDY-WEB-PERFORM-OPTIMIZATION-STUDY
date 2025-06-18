@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "svgr": "npx @svgr/cli -d src/assets/svgs --ignore-existing --typescript --no-dimensions public/svgs",
-    "prepare": "husky && husky install"
+    "prepare": "husky install"
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx}": [

@@ -1,3 +1,5 @@
+/** @jsxImportSource @emotion/react */
+import { useState, useEffect, useRef } from 'react';
 import SectionTitle from '@components/common/SectionTitle/SectionTitle';
 import * as S from './Review.style';
 import RenderStars from './RenderStars';
@@ -5,7 +7,6 @@ import Keywords from './Keywords';
 import PhotoScrollList from './PhotoScrollList';
 import Divider from '@components/common/divider/Divider';
 import theme from '@styles/theme';
-import { SmallArrowDownIcon } from '@assets/svgs';
 import Comment from './Comment';
 import NavigationButton from '@components/buttons/navigationButton/NavigationButton';
 import type { GetReviewsResponseData, GetProductDetailResponseData } from '@app-types/product';
@@ -93,7 +94,7 @@ const Review = ({ reviewData, productData, reviewImages = [] }: ReviewProps) => 
           </div>
           <div css={S.DropdownContainer}>
             <p css={S.Recommendation}>추천순</p>
-            <SmallArrowDownIcon css={S.ArrowIcon} />
+            <img src="/svgs/small-arrow-down-icon.svg" alt="Arrow Down" css={S.ArrowIcon} />
           </div>
         </div>
 

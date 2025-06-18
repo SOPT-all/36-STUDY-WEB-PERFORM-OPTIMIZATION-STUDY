@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import * as S from './searchBar.style';
-import { SearchIcon, BarcodeIcon, CancelIcon } from '@assets/svgs';
+// SVG 컴포넌트를 실제 SVG 파일로 변경
 
 interface SearchBarProps {
   placeholder?: string;
@@ -57,7 +57,7 @@ const SearchBar = ({
       <div css={S.iconWrapper(internalValue !== '')}>
         {internalValue === '' ? (
           <>
-            <BarcodeIcon width={24} />
+            <img src="/svgs/barcode-icon.svg" alt="Barcode" width={24} />
             <div css={S.divider} />
           </>
         ) : (
@@ -67,7 +67,7 @@ const SearchBar = ({
             css={S.clearButton}
             aria-label="입력 초기화"
           >
-            <CancelIcon width={14} />
+            <img src="/svgs/cancel-icon.svg" alt="Cancel" width={14} />
           </button>
         )}
 
@@ -77,7 +77,7 @@ const SearchBar = ({
           css={S.searchButton}
           aria-label="검색"
         >
-          <SearchIcon width={24} />
+          <img src="/svgs/search-icon.svg" alt="Search" width={24} />
         </button>
       </div>
     </div>

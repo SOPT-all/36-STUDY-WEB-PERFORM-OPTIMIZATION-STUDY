@@ -1,6 +1,6 @@
 import * as R from '@components/ProductCard/ProductCardRanking/ProductCardRanking.style';
 import ProductTag from '@components/Tag/ProductTag';
-import { CartIcon } from '@assets/svgs';
+// SVG 컴포넌트를 실제 SVG 파일로 변경
 import type { ProductTagData } from '@components/Tag/tagData';
 import { memo } from 'react';
 import LazyImage from './LazyImage';
@@ -60,7 +60,7 @@ const ProductCardRanking = ({
 
     {showCartIcon && (
       <div css={R.cartButton}>
-        <CartIcon css={R.cartIcon} />
+        <img src="/svgs/cart-icon.svg" alt="Cart" css={R.cartIcon} />
       </div>
     )}
   </div>

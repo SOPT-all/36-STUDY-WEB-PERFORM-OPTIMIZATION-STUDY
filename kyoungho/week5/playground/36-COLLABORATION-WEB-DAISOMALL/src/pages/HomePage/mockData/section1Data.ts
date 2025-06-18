@@ -1,10 +1,10 @@
 import theme from '@styles/theme';
 
-import sectionImg1 from '/home-section-1.png';
-import sectionImg2 from '/home-section-2.png';
-import sectionImg3 from '/home-section-3.png';
-import sectionImg4 from '/home-section-4.png';
-import sectionImg5 from '/home-section-5.png';
+import sectionImg1 from '/home-section-1.webp';
+import sectionImg2 from '/home-section-2.webp';
+import sectionImg3 from '/home-section-3.webp';
+import sectionImg4 from '/home-section-4.webp';
+import sectionImg5 from '/home-section-5.webp';
 
 import type { ProductCardVerticalProps } from '@app-types/productCard';
 
