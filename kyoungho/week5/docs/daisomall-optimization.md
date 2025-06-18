@@ -32,8 +32,7 @@ SI : 44.5s
 ## 최적화 작업
 - SVG React 컴포넌트를 실제 SVG 파일 참조로 변경
 - `@assets/svgs` import를 `<img src="/svgs/파일명.svg">` 태그로 대체
-- **중요**: `src/assets/svgs/index.ts`에서 사용하지 않는 SVG 컴포넌트들의 export 제거 (번들에서 완전히 제외)
-
+- `src/assets/svgs/index.ts`에서 사용하지 않는 SVG 컴포넌트들의 export 제거 (번들에서 완전히 제외)
 - JavaScript 번들 사이즈 감소
 - 초기 로딩 성능 개선
 - 브라우저 캐싱 활용 가능
@@ -57,6 +56,14 @@ Speed Index : 20.6 s
 
 ## 기존 PNG 파일 삭제
 - public 폴더와 assets/pngs 폴더의 모든 PNG 파일 완전 삭제
+
+---
+
+# 모바일 화면 고려한 WebP 추가 최적화
+
+## 최적화 전략
+- 대형 이미지 리사이즈하여 모바일 화면 크기에 맞게 50% 축소
+- 85% → 60-65%로 낮춰 추가 압축
 
 ---
 
