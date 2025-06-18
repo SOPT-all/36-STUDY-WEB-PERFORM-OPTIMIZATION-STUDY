@@ -1,0 +1,184 @@
+[인터파크 티켓](https://36-collaboration-web-interpark-ticket.vercel.app/)
+
+## **1. 홈쪽에서 이미지 지연 로딩 최적화**
+
+Intersection Observer 이용해서 화면에 당장 안보이는 이미지는 로드 안되게 해두고 스크롤 내리면 자동 감지해서 src 채워놓도록
+
+[미디어2.mp4](attachment:78c99b31-62de-49a5-92ca-a034230c164f:미디어2.mp4)
+
+[]()
+
+[IntersectionObserver의 사용법](https://velog.io/@kymkjh2002/IntersectionObserver%EC%9D%98-%EC%82%AC%EC%9A%A9%EB%B2%95)
+
+```tsx
+import * as styles from './DiscountCard.css';
+import type { DiscountPerformance } from '../../api/types';
+import TimeDeal from '@/pages/Main/components/TimeDeal/TimeDeal';
+
+interface DiscountCardProps extends DiscountPerformance {
+  onClick?: () => void;
+}
+
+const DiscountCard = ({
+  title,
+  discountRate,
+  price,
+  imageUrl,
+  location,
+  startDate,
+  endDate,
+  description,
+  dealTime,
+  onClick,
+}: DiscountCardProps) => {
+  return (
+    <div className={styles.discountCard} onClick={onClick}>
+      <img src={imageUrl} className={styles.cardImg} alt={title} />
+      <div className={styles.cardContent}>
+        <TimeDeal text="타임딜" time={dealTime} />
+        <h3 className={styles.discoutTitle}>{title}</h3>
+        <p className={styles.locationtxt}>{location}</p>
+        <p className={styles.dateTxt}>
+          {startDate} ~ {endDate}
+        </p>
+        <p className={styles.descriptionTxt}>{description}</p>
+        <div className={styles.priceDisplay}>
+          <p className={styles.discoutNum}>{discountRate}%</p>
+
+          <p className={styles.priceNum}>{price.toLocaleString()}원</p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default DiscountCard;
+
+```
+
+```jsx
+import { useEffect, useState } from 'react';
+import * as styles from './DiscountCard.css';
+import type { DiscountPerformance } from '../../api/types';
+import TimeDeal from '@/pages/Main/components/TimeDeal/TimeDeal';
+
+interface DiscountCardProps extends DiscountPerformance {
+  onClick?: () => void;
+}
+
+const DiscountCard = ({
+  title,
+  discountRate,
+  price,
+  imageUrl,
+  location,
+  startDate,
+  endDate,
+  description,
+  dealTime,
+  onClick,
+}: DiscountCardProps) => {
+  const [isInView, setIsInView] = useState(false);
+  const [imageSrc, setImageSrc] = useState('');
+
+  // IntersectionObserver 설정
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setImageSrc(imageUrl); // 이미지가 화면에 들어오면 로드
+            observer.unobserve(entry.target); // 한 번만 실행
+          }
+        });
+      },
+      {
+        threshold: 0.1, // 10% 이상 보일 때 이미지 로드
+      }
+    );
+
+    const imgElement = document.getElementById(`image-${title}`);
+    if (imgElement) observer.observe(imgElement);
+
+    return () => {
+      if (imgElement) observer.unobserve(imgElement);
+    };
+  }, [imageUrl, title]);
+
+  return (
+    <div className={styles.discountCard} onClick={onClick}>
+      {/* 이미지가 화면에 들어오면 로드 */}
+      <img
+        id={`image-${title}`}
+        src={isInView ? imageSrc : ''}
+        className={styles.cardImg}
+        alt={title}
+        loading="lazy" // lazy-load 속성 추가
+      />
+      <div className={styles.cardContent}>
+        <TimeDeal text="타임딜" time={dealTime} />
+        <h3 className={styles.discoutTitle}>{title}</h3>
+        <p className={styles.locationtxt}>{location}</p>
+        <p className={styles.dateTxt}>
+          {startDate} ~ {endDate}
+        </p>
+        <p className={styles.descriptionTxt}>{description}</p>
+        <div className={styles.priceDisplay}>
+          <p className={styles.discoutNum}>{discountRate}%</p>
+          <p className={styles.priceNum}>{price.toLocaleString()}원</p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default DiscountCard;
+```
+
+## 2. **`loading="lazy"` 속성 추가**
+
+`loading="lazy"` 속성을 사용하면 브라우저가 사용자가 화면에 볼 때까지 이미지를 지연 로딩하도록 할 수 있습니다. 이는 기본적으로 지원되는 브라우저에서 효과적으로 작동합니다.
+
+**효과**: 불필요한 이미지 로딩 방지, 초기 페이지 로딩 속도 향상.
+
+**코드 수정 예시**:
+
+```tsx
+tsx
+복사
+<img
+  src={imageUrl}
+  className={styles.cardImg}
+  alt={title}
+  loading="lazy" // lazy-load 속성 추가
+/>
+
+```
+
+## 3. **이미지 압축 및 크기 최적화**
+
+이미지 크기를 조정하고 압축하는 것도 성능을 크게 개선할 수 있습니다. 예를 들어, 이미지의 `srcSet`을 사용하여 화면 크기나 해상도에 맞는 이미지를 선택적으로 로딩하도록 할 수 있습니다.
+
+**효과**: 다운로드하는 이미지 크기 최소화, 더 빠른 로딩.
+
+**코드 수정 예시**:
+
+```tsx
+
+<img
+  srcSet={`${imageUrl}?w=500&h=500&fit=crop 500w, ${imageUrl}?w=1000&h=1000&fit=crop 1000w`}
+  sizes="(max-width: 500px) 500px, 1000px" // 화면 크기에 따라 로딩할 이미지 크기 선택
+  src={imageUrl}
+  className={styles.cardImg}
+  alt={title}
+/>
+
+```
+
+## 4. 홈 아이콘 쪽 이미지 확장자 수정!
+
+![image.png](attachment:6326c565-5486-4fab-87fc-42cf28961b09:image.png)
+
+## 5. 티켓팅 로직
+
+[화면 기록 2025-05-23 오후 3.57.15.mov](attachment:f3de0902-6639-4221-be5e-306be436c5b0:화면_기록_2025-05-23_오후_3.57.15.mov)
