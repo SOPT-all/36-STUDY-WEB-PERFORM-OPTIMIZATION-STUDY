@@ -2,7 +2,7 @@ import { useState, Fragment } from 'react';
 import {
   CATEGORY_TITLE,
   CATEGORY_DETAIL_MAP,
-} from '@shared/components/headerMid/constants/CATEGORY';
+} from '@shared/components/headerMid/constants/CATEGORY.tsx';
 import * as styles from '@shared/components/headerMid/components/categoryMenu/CategoryMenu.css';
 import Text from '@shared/components/text/Text';
 import Divider from '@shared/components/divider/Divider';

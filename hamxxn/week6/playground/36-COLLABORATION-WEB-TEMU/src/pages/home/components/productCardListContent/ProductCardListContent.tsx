@@ -1,8 +1,8 @@
 import * as styles from '@pages/home/components/productCardListContent/ProductCardListContent.css';
 import Card from '@shared/components/card/Card';
 import ProductActionButton from '@shared/components/ProductActionButton/ProductActionButton';
-import { IcArrowDownWhite } from '@svg/index';
 import type { ProductCardData } from '@pages/home/types/response';
+import { SocialSVG } from '@shared/components/socialSVG/SocialSVG';
 
 interface Props {
   filteredCards: ProductCardData[];
@@ -35,7 +35,7 @@ const ProductCardListContent = ({ filteredCards, visibleCount, onClickMore }: Pr
           size="sm"
           radius="md"
           fontSize="sm"
-          icon={<IcArrowDownWhite />}
+          icon={<SocialSVG id="ic-arrow-down-white" />}
           onClick={onClickMore}
         />
       </section>

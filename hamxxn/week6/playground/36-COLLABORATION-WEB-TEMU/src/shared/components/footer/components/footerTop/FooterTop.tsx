@@ -2,7 +2,7 @@ import * as styles from '@shared/components/footer/components/footerTop/FooterTo
 import {
   APP_DOWNLOAD,
   FOOTER_TOP_SECTIONS,
-} from '@shared/components/footer/constants/FOOTER_SECTIONS';
+} from '@shared/components/footer/constants/FOOTER_SECTIONS.tsx';
 import Text from '@shared/components/text/Text';
 import Divider from '@shared/components/divider/Divider';
 
@@ -32,9 +32,9 @@ const FooterTop = () => {
         <div className={styles.appSectionWrapper}>
           <div className={styles.appSectionColWrapper}>
             <div className={styles.appSectionColTextWrapper}>
-              {APP_DOWNLOAD.itemsLeft.map(({ id, text, icon: Icon }) => (
+              {APP_DOWNLOAD.itemsLeft.map(({ id, text, icon }) => (
                 <div key={id} className={styles.appSectionTextRow}>
-                  <Icon width="2rem" height="2rem" />
+                  {icon()}
                   <Text tag="body_regular_14" color="white">
                     {text}
                   </Text>
@@ -42,7 +42,7 @@ const FooterTop = () => {
               ))}
             </div>
             <button className={styles.buttonWrapper} type="button">
-              <ios.icon width="2.4rem" height="3rem" />
+              {ios.icon()}
               <div>
                 <Text tag="body_regular_14" color="gray3">
                   {ios.text}
@@ -62,9 +62,9 @@ const FooterTop = () => {
 
           <div className={styles.appSectionColWrapper}>
             <div className={styles.appSectionColTextWrapper}>
-              {APP_DOWNLOAD.itemsRight.map(({ id, text, icon: Icon }) => (
+              {APP_DOWNLOAD.itemsRight.map(({ id, text, icon }) => (
                 <div key={id} className={styles.appSectionTextRow}>
-                  <Icon width="2rem" height="2rem" />
+                  {icon()}
                   <Text tag="body_regular_14" color="white">
                     {text}
                   </Text>
@@ -72,7 +72,7 @@ const FooterTop = () => {
               ))}
             </div>
             <button className={styles.buttonWrapper} type="button">
-              <android.icon width="2rem" height="2.2rem" />
+              {android.icon()}
               <div>
                 <Text tag="body_regular_14" color="gray3">
                   {android.text}
@@ -89,9 +89,9 @@ const FooterTop = () => {
             {APP_DOWNLOAD.socialLinks.title}
           </Text>
           <div className={styles.snsWrapper}>
-            {APP_DOWNLOAD.socialLinks.items.map(({ id, icon: Icon }) => (
+            {APP_DOWNLOAD.socialLinks.items.map(({ id, icon }) => (
               <button type="button" key={id}>
-                <Icon width="2rem" height="2rem" />
+                {icon()}
               </button>
             ))}
           </div>

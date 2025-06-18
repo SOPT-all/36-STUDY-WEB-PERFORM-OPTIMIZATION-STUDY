@@ -1,7 +1,7 @@
 import * as styles from '@shared/components/card/Card.css';
-import { IcCartBlack, IcReviewBlack } from '@svg/index';
-import { PRODUCT_TAGS } from '@shared/components/card/constant/productTag';
 import { useNavigate } from 'react-router-dom';
+import { SocialSVG } from '@shared/components/socialSVG/SocialSVG';
+import { PRODUCT_TAGS } from '@shared/components/card/constant/productTag';
 
 interface CardProps {
   productId?: number;
@@ -44,18 +44,18 @@ const Card = ({
             <span className={styles.cardPrice}>{discountPrice.toLocaleString()}원</span>
           </div>
           <button type="button" className={styles.cartButton}>
-            <IcCartBlack width={'2.4rem'} height={'2.4rem'} />
+            <SocialSVG id="ic-cart-black" width="2.4rem" height="2.4rem" />
           </button>
         </div>
         {size === 'xl' && (
           <>
             <div className={styles.cardReviewRow}>
-              <IcReviewBlack width={'1.6rem'} height={'1.6rem'} />
+              <SocialSVG id="ic-review-black" width="1.6rem" height="1.6rem" />
               <div className={styles.review}>{reviewCount}</div>
             </div>
             {productTag && productTag !== 'NONE' && (
               <div className={styles.cardProductTageRow}>
-                {PRODUCT_TAGS[productTag]?.icon}
+                {PRODUCT_TAGS[productTag]?.icon?.()}
                 <span>{PRODUCT_TAGS[productTag]?.text}</span>
               </div>
             )}

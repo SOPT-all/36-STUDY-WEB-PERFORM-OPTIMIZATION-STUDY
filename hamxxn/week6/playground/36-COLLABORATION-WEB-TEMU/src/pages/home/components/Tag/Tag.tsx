@@ -17,7 +17,7 @@ const Tag = ({ selectedTag, handleTagClick }: TagProps) => {
           key={id}
           onClick={() => handleTagClick(id)}
         >
-          {icon}
+          {icon()}
           <Text
             tag={selectedTag == id ? 'body_bold_14' : 'body_regular_14'}
             color={selectedTag == id ? 'white' : 'black'}

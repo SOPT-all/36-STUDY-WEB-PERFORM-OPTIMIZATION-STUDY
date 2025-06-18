@@ -1,18 +1,19 @@
 import * as styles from '@shared/components/footer/components/footerBottom/FooterBottom.css';
-import { IcCopyRight, IcFooterProtect } from '@svg/index';
-import { FOOTER_BOTTOM_SECTIONS } from '@shared/components/footer/constants/FOOTER_SECTIONS';
+import { FOOTER_BOTTOM_SECTIONS } from '@shared/components/footer/constants/FOOTER_SECTIONS.tsx';
 import Text from '@shared/components/text/Text';
 import clsx from 'clsx';
+import { SocialSVG } from '@shared/components/socialSVG/SocialSVG';
 
 const FooterBottom = () => {
   return (
     <div className={styles.container}>
       <div className={styles.leftTitlesWrapper}>
-        <IcCopyRight width="2rem" height="2rem" />
+        <SocialSVG id="ic-copyright" width="2rem" height="2rem" />
         <Text tag="caption_regular_12" color="gray5">
           2022 - 2025 Whaleco Inc.
         </Text>
       </div>
+
       <div className={styles.titlesWrapper}>
         {FOOTER_BOTTOM_SECTIONS.map(({ id, text, icon, underline }) => (
           <div key={id} className={styles.row}>
@@ -23,7 +24,7 @@ const FooterBottom = () => {
             >
               {text}
             </Text>
-            {icon && <IcFooterProtect width="2.5rem" height="1.2rem" />}
+            {icon && icon()}
           </div>
         ))}
       </div>

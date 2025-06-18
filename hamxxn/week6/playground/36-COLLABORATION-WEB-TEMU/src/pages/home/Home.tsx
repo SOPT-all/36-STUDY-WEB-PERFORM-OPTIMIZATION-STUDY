@@ -1,12 +1,12 @@
 import { Suspense } from 'react';
 import * as styles from '@/pages/home/Home.css';
-import { IcFlashBlack, IcChevronForwardBlack } from '@svg/index';
 import ImgMainBanner from '@/../public/img/imgMainBanner.png';
 import Banner from '@/../public/img/banner_familymonth.png';
 import Text from '@shared/components/text/Text';
 import CardSkeleton from '@shared/components/card/CardSkeleton';
 import PromotionCardList from '@pages/home/components/promotionCardList/PromotionCardList';
 import ProductCardListSection from '@pages/home/components/productCardListSection/ProductCardListSecton';
+import { SocialSVG } from '@shared/components/socialSVG/SocialSVG';
 
 const Home = () => {
   return (
@@ -16,11 +16,11 @@ const Home = () => {
         <section className={styles.sectionStyle}>
           <div className={styles.forwardTitleWrapper}>
             <div className={styles.forwardTitle}>
-              <IcFlashBlack width="2.4rem" height="2.4rem" />
+              <SocialSVG id="ic-flash-black" width="2.4rem" height="2.4rem" />
               <Text tag="head_bold_24" color="black">
                 번개특가
               </Text>
-              <IcChevronForwardBlack width="3.2rem" height="3.2rem" />
+              <SocialSVG id="ic-chevron-forward-black" width="3.2rem" height="3.2rem" />
             </div>
             <Text tag="body_regular_16" color="gray4">
               서둘러 주세요! 혜택가로 인기 상품을 놓치지 말고 구매하세요

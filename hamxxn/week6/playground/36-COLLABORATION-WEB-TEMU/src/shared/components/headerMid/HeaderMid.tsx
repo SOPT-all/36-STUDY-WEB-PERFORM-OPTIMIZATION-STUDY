@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { IcCategory, IcLanguage, IcClose } from '@svg/index';
 import Text from '@shared/components/text/Text';
 import Divider from '@shared/components/divider/Divider';
 import * as styles from '@shared/components/headerMid/HeaderMid.css';
 import CategoryMenu from '@shared/components/headerMid/components/categoryMenu/CategoryMenu';
 import useOutsideClick from '@shared/hooks/useOutSideClick';
+import { SocialSVG } from '../socialSVG/SocialSVG';
 
 const HeaderMid = () => {
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
@@ -24,9 +24,13 @@ const HeaderMid = () => {
   }, [pathname]);
 
   const CategoryToggleIcon = isCategoryOpen ? (
-    <IcClose width="3.2rem" height="3.2rem" onClick={handleCategoryClick} />
+    <div onClick={handleCategoryClick}>
+      <SocialSVG id="ic-close" width="3.2rem" height="3.2rem" />
+    </div>
   ) : (
-    <IcCategory width="3.2rem" height="3.2rem" onClick={handleCategoryClick} />
+    <div onClick={handleCategoryClick}>
+      <SocialSVG id="ic-category" width="3.2rem" height="3.2rem" />
+    </div>
   );
 
   return (
@@ -65,7 +69,7 @@ const HeaderMid = () => {
               </button>
             </div>
             <button type="button" className={styles.navStyle} aria-label="언어변경">
-              <IcLanguage width="2.4rem" height="2.4rem" />
+              <SocialSVG id="ic-language" width="2.4rem" height="2.4rem" />
             </button>
           </div>
         </div>

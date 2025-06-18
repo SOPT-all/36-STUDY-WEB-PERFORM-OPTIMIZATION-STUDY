@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { IcTemu, IcTemuLogo, IcSearch, IcUser, IcCartBlack } from '@svg/index';
 import * as styles from '@shared/components/header/Header.css';
 import clsx from 'clsx';
 import { PLACEHOLDER } from '@shared/components/header/constant';
@@ -8,6 +7,7 @@ import { ROUTES } from '@router/constant/routes';
 import { useIntersect } from '@shared/hooks/useIntersect';
 import useDebounce from '@shared/hooks/useDebounce';
 import HeaderMid from '@shared/components/headerMid/HeaderMid';
+import { SocialSVG } from '../socialSVG/SocialSVG';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -62,8 +62,8 @@ const Header = () => {
           <div className={styles.headerWrapper}>
             <div className={styles.leftWrapper}>
               <nav className={styles.logowrapper} onClick={handleLogoClick}>
-                <IcTemu width="5.2rem" height="5.2rem" />
-                <IcTemuLogo width="12.3rem" height="3.2rem" />
+                <SocialSVG id="ic-temu" width="5.2rem" height="5.2rem" />
+                <SocialSVG id="ic-temu-logo" width="12.3rem" height="3.2rem" />
               </nav>
               <div className={styles.inputWrapper}>
                 <input
@@ -75,13 +75,17 @@ const Header = () => {
                   className={styles.input}
                 ></input>
                 <button type="button" onClick={handleSearch}>
-                  <IcSearch width="2.4rem" height="2.4rem" />
+                  <SocialSVG id="ic-search" width="2.4rem" height="2.4rem" />
                 </button>
               </div>
             </div>
             <div className={styles.rightWrapper}>
-              <IcUser className={styles.rightLogo} width="4rem" height="4rem" />
-              <IcCartBlack className={styles.rightLogo} width="4rem" height="4rem" />
+              <div className={styles.rightLogo}>
+                <SocialSVG id="ic-user" width="4rem" height="4rem" />
+              </div>
+              <div className={styles.rightLogo}>
+                <SocialSVG id="ic-cart-black" width="4rem" height="4rem" />
+              </div>
             </div>
           </div>
         </div>
