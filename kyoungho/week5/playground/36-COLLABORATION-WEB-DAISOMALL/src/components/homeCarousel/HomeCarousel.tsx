@@ -19,17 +19,17 @@ interface HomeCarouselProps {
 // 기본 캐러셀 아이템 데이터
 const DEFAULT_CAROUSEL_ITEMS = [
   {
-    imageUrl: '/home-carousel-1.png',
+    imageUrl: '/home-carousel-1.webp',
     title: '정리가 쉬워지는\n냉장고 수납',
     tags: ['#저장용기', '#바구니', '#정리함'],
   },
   {
-    imageUrl: '/home-carousel-2.png',
+    imageUrl: '/home-carousel-2.webp',
     title: '마음을 꾹 담아 전하는\n편지 & 카드 모음전',
     tags: ['#문구용품', '#편지', '#엽서'],
   },
   {
-    imageUrl: '/home-carousel-3.png',
+    imageUrl: '/home-carousel-3.webp',
     title: '손쉽고 깔끔한\n뚜껑 수납용품',
     tags: ['#수납용품', '#정리함', '#바구니'],
   },

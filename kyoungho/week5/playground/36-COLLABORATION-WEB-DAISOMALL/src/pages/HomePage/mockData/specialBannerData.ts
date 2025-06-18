@@ -1,6 +1,6 @@
-import specialImg1 from '/home-special-1.png';
-import specialImg2 from '/home-special-2.png';
-import specialImg3 from '/home-special-3.png';
+import specialImg1 from '/home-special-1.webp';
+import specialImg2 from '/home-special-2.webp';
+import specialImg3 from '/home-special-3.webp';
 
 export const SPECIAL_BANNERS = [
   {

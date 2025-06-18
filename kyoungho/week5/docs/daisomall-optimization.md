@@ -38,5 +38,27 @@ SI : 44.5s
 - 초기 로딩 성능 개선
 - 브라우저 캐싱 활용 가능
 
+---
+
+최적화 중간 결과
+First Contentful Paint : 20.6 s
+Largest Contentful Paint : 45.7 s
+Total Blocking Time : 210 ms
+Cumulative Layout Shift : 0.028
+Speed Index : 20.6 s
+
+---
+
+# 전체 이미지 최적화 (PNG → WebP 일괄 변환)
+
+## 작업 내용
+- **public 폴더**: 54개의 PNG 파일을 WebP로 변환 (품질 85%)
+- **src/assets/pngs 폴더**: 10개의 PNG 파일을 WebP로 변환 (품질 85%)
+
+## 기존 PNG 파일 삭제
+- public 폴더와 assets/pngs 폴더의 모든 PNG 파일 완전 삭제
+
+---
+
 
 

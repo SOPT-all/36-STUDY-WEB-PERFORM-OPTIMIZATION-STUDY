@@ -315,7 +315,7 @@ const ProductDetailPage = () => {
         <BrandInfo
           brandName="VT"
           brandDescription="유행을 창조하는 Stylish와 시간에 구애받지 않는 Timeless 효과로 당신의 매일을 함께하는 VT의 스페셜 홈케어! 리들샷의 따끔한 미세자극으로 건강한 피부를 가꿔보세요."
-          brandImageUrl="/VT.png"
+          brandImageUrl="/VT.webp"
         />
       </div>
 
@@ -359,7 +359,7 @@ const ProductDetailPage = () => {
             onClickAll={() => console.log('브랜드 상품 모아보기 클릭')}
             image={
               <img
-                src="/VT.png"
+                src="/VT.webp"
                 alt="VT 브랜드"
                 style={{
                   width: '3.2rem',
@@ -374,11 +374,11 @@ const ProductDetailPage = () => {
             {brandProductsData.products.slice(0, 5).map((product, index) => {
               // 다양한 임시 이미지 URL 배열
               const tempImages = [
-                '/brand1.png',
-                '/brand2.png',
-                '/brand3.png',
-                '/brand4.png',
-                '/brand5.png',
+                '/brand1.webp',
+                '/brand2.webp',
+                '/brand3.webp',
+                '/brand4.webp',
+                '/brand5.webp',
               ];
 
               return (

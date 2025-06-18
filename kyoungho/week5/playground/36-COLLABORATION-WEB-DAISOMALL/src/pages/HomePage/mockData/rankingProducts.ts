@@ -1,9 +1,9 @@
 import theme from '@styles/theme';
-import sectionImg1 from '/home-rank-1.png';
-import sectionImg2 from '/home-rank-2.png';
-import sectionImg3 from '/home-rank-3.png';
-import sectionImg4 from '/home-rank-4.png';
-import sectionImg5 from '/home-rank-5.png';
+import sectionImg1 from '/home-rank-1.webp';
+import sectionImg2 from '/home-rank-2.webp';
+import sectionImg3 from '/home-rank-3.webp';
+import sectionImg4 from '/home-rank-4.webp';
+import sectionImg5 from '/home-rank-5.webp';
 import type { ProductCardRankingProps } from '@app-types/productCard';
 
 export const FIRST_RANKING_PRODUCTS: ProductCardRankingProps[] = [

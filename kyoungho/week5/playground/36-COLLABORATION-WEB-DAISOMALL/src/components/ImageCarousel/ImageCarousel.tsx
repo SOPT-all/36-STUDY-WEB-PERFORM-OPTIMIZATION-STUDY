@@ -65,7 +65,7 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
           }}
         >
           <img
-            src="/sns-hot.png"
+            src="/sns-hot.webp"
             alt="SNS 핫템"
             css={{
               width: '100%',

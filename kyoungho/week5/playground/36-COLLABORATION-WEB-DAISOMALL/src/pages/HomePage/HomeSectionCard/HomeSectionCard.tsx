@@ -3,8 +3,8 @@ import SectionTitle from '@components/common/SectionTitle/SectionTitle';
 import Divider from '@components/common/divider/Divider';
 import ProductCardVertical from '@components/ProductCard/ProductCardVertical/ProductCardVertical';
 import ImageCarousel from '@components/ImageCarousel/ImageCarousel';
-import bannerImg1 from '/home-banner-1.png';
-import bannerImg2 from '/home-banner-2.png';
+import bannerImg1 from '/home-banner-1.webp';
+import bannerImg2 from '/home-banner-2.webp';
 import type { ProductTagData } from '@components/Tag/tagData';
 const bannerImages = [bannerImg1, bannerImg2];
 interface ProductCardVerticalProps {

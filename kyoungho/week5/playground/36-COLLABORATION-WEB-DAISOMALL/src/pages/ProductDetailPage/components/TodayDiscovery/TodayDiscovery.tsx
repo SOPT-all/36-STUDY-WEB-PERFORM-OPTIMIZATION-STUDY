@@ -1,11 +1,11 @@
 import TodayCard from '@components/ProductCard/TodayCard/TodayCard';
 import * as S from './TodayDiscovery.style';
-import TodayImg1 from '@assets/pngs/TodayImg1.png';
-import TodayImg2 from '@assets/pngs/TodayImg2.png';
-import TodayImg3 from '@assets/pngs/TodayImg3.png';
-import TodayImgProfile1 from '@assets/pngs/TodayImgProfile1.png';
-import TodayImgProfile2 from '@assets/pngs/TodayImgProfile2.png';
-import TodayImgProfile3 from '@assets/pngs/TodayImgProfile3.png';
+import TodayImg1 from '@assets/pngs/TodayImg1.webp';
+import TodayImg2 from '@assets/pngs/TodayImg2.webp';
+import TodayImg3 from '@assets/pngs/TodayImg3.webp';
+import TodayImgProfile1 from '@assets/pngs/TodayImgProfile1.webp';
+import TodayImgProfile2 from '@assets/pngs/TodayImgProfile2.webp';
+import TodayImgProfile3 from '@assets/pngs/TodayImgProfile3.webp';
 
 const TodayDiscovery = () => (
   <>
