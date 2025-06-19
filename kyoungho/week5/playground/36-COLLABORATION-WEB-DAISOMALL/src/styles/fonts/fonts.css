@@ -1,0 +1,49 @@
+@font-face {
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 700;
+  src:
+    local('Pretendard Bold'),
+    local('Pretendard-Bold'),
+    url('./Pretendard/Pretendard-Bold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 600;
+  src:
+    local('Pretendard SemiBold'),
+    local('Pretendard-SemiBold'),
+    url('./Pretendard/Pretendard-SemiBold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 500;
+  src:
+    local('Pretendard Medium'),
+    local('Pretendard-Medium'),
+    url('./Pretendard/Pretendard-Medium.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 400;
+  src:
+    local('Pretendard Regular'),
+    local('Pretendard-Regular'),
+    url('./Pretendard/Pretendard-Regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Daiso';
+  font-style: normal;
+  font-weight: 400;
+  src:
+    local('Daiso'),
+    local('Daiso'),
+    url('./DAISOA/Daisofont.woff') format('woff');
+}
