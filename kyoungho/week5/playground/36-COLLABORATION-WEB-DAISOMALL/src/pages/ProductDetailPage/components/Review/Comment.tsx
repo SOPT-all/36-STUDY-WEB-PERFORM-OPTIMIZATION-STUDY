@@ -1,4 +1,4 @@
-import { MenuIcon, StarIconRed, ThumbUpIcon } from '@assets/svgs';
+// SVG 컴포넌트를 실제 SVG 파일로 변경
 import * as S from './Comment.style';
 
 interface CommentProps {
@@ -34,11 +34,11 @@ const Comment = ({
           <p css={S.BodyTextStyle}>{nickname}</p>
         </div>
         <div css={S.MiddleSection}>
-          <StarIconRed width={11} height={11} />
+                        <img src="/svgs/star-icon-red.svg" alt="별점" width={11} height={11} />
           <p css={S.CaptionTextStyle}>{rating}점 | 2025-05-01</p>
         </div>
       </div>
-      <MenuIcon width={24} height={24} />
+                  <img src="/svgs/menu-icon.svg" alt="메뉴" width={24} height={24} />
     </div>
 
     <div css={S.SecondContainer}>
@@ -66,7 +66,7 @@ const Comment = ({
         <p css={S.ButtonText}>도움돼요</p>
       </div>
       <div css={S.RightSection}>
-        <ThumbUpIcon width={16} height={16} />
+                  <img src="/svgs/thumbup-icon.svg" alt="좋아요" width={16} height={16} />
         <p css={S.CaptionTextStyle2}>{likes}</p>
       </div>
     </div>

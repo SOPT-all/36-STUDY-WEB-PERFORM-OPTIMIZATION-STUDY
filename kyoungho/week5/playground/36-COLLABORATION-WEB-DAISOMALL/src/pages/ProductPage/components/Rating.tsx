@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import * as S from './Rating.style';
-import { StarIcon } from '@assets/svgs';
+// SVG 컴포넌트를 실제 SVG 파일로 변경
 
 interface RatingProps {
   ratingAvg?: string;
@@ -21,7 +21,7 @@ const Rating = ({ ratingAvg, reviewCount }: RatingProps) => {
   return (
     <div css={S.Rating}>
       <div css={S.RatingIconWrapper}>
-        <StarIcon />
+                  <img src="/svgs/star-icon.svg" alt="별점" />
       </div>
       <span css={S.RatingText}>{ratingAvg || '0'}점</span>
       <span css={S.ReviewCount}>{formatReviewCount(reviewCount)}</span>

@@ -2,7 +2,7 @@ import AccordionButton from '@components/buttons/accordion/AccordionButton';
 import * as S from './Accordion.style';
 import theme from '@styles/theme';
 import Divider from '@components/common/divider/Divider';
-import SvgContactIcon from '@assets/svgs/ContactIcon';
+// SVG 컴포넌트를 실제 SVG 파일로 변경
 
 const Accordion = () => (
   <div css={S.Wrapper}>
@@ -51,7 +51,7 @@ const Accordion = () => (
     <AccordionButton title="고객센터" defaultOpen={true}>
       <div css={S.ContactWrapper}>
         <div css={S.ContactSection}>
-          <SvgContactIcon width={24} />
+          <img src="/svgs/contact-icon.svg" alt="문의" width={24} />
 
           <div css={S.ContentSection}>
             <p css={S.ContactTitle}>다이소몰(온라인) / 모바일 상품권 문의</p>
@@ -60,7 +60,7 @@ const Accordion = () => (
         </div>
 
         <div css={S.ContactSection}>
-          <SvgContactIcon width={24} />
+          <img src="/svgs/contact-icon.svg" alt="문의" width={24} />
 
           <div css={S.ContentSection}>
             <p css={S.ContactTitle}>기타 오프라인 매장 문의</p>

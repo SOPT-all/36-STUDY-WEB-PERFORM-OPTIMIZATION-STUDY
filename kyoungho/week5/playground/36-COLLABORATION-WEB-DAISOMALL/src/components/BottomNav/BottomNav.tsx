@@ -1,7 +1,7 @@
 // SVG 컴포넌트를 실제 SVG 파일로 변경
 import * as S from './BottomNav.style';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 
 const BOTTOM_NAV_HEIGHT_REM = 5.6;
 const CIRCLE_BUTTON_OVER_REM = 3;
@@ -13,27 +13,40 @@ const BottomNav = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
+  // 스크롤 핸들러를 useCallback으로 최적화
+  const handleScroll = useCallback(() => {
+    const currentScrollY = window.scrollY;
+    const scrollDifference = currentScrollY - lastScrollY;
+    
+    // 스크롤 차이가 10px 이상일 때만 동작하도록 설정
+    if (Math.abs(scrollDifference) > 10) {
+      if (scrollDifference > 0) {
+        // 스크롤 다운
+        setIsVisible(false);
+      } else {
+        // 스크롤 업
+        setIsVisible(true);
+      }
+      setLastScrollY(currentScrollY);
+    }
+  }, [lastScrollY]);
+
   useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      const scrollDifference = currentScrollY - lastScrollY;
-      
-      // 스크롤 차이가 10px 이상일 때만 동작하도록 설정
-      if (Math.abs(scrollDifference) > 10) {
-        if (scrollDifference > 0) {
-          // 스크롤 다운
-          setIsVisible(false);
-        } else {
-          // 스크롤 업
-          setIsVisible(true);
-        }
-        setLastScrollY(currentScrollY);
+    // 스로틀링 적용하여 성능 개선
+    let ticking = false;
+    const throttledScrollHandler = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY]);
+    window.addEventListener('scroll', throttledScrollHandler, { passive: true });
+    return () => window.removeEventListener('scroll', throttledScrollHandler);
+  }, [handleScroll]);
 
   // 현재 경로에 따라 탭 결정
   const getSelectedTab = () => {

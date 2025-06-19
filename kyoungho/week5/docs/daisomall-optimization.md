@@ -69,10 +69,6 @@ Speed Index : 20.6 s
 
 Performance Panel을 통해 분석을 해봤고, Evaluate Script 막대가 긴 것을 확인하였다.
 
-- 빌드된 `index-BdkRk-uZ.js` 파일이 **3.9MB**로 과도하게 큰 번들 크기
-- 일반적인 웹앱 번들 크기(100-500KB)보다 8-40배 큰 사이즈
-- 브라우저가 거대한 스크립트를 파싱하고 실행하는데 상당한 시간 소요
-
 번들 크기가 큰 이유는, 
 - **무거운 SVG 컴포넌트들**: `DeliveryIcon.tsx`(756KB), `EventIcon.tsx`(611KB), `PickupIcon.tsx`(506KB) 등이 JavaScript 번들에 포함
 - **코드 분할 부재**: `pageRoutes.tsx`에서 모든 페이지를 동기 import로 한 번에 로드
@@ -106,6 +102,69 @@ console.log가 많은 부분도 있었다.
 
 ---
 
+Performance Panel 분석 후 추가 최적화 작업
 
+## 1. console.log 제거
+- `ProductDetailPage.tsx`에서 15개 이상의 console.log 완전 제거
+- `Review.tsx`에서 반복문 내부 포함 10개 이상 console.log 제거
+- 디버깅 코드로 인한 CPU 시간 소모 해결
 
+## 2. SVG 컴포넌트 파일 완전 삭제
+- `src/assets/svgs/` 폴더의 모든 React 컴포넌트 파일(`.tsx`) 삭제
+- 무거운 SVG 컴포넌트들이 JavaScript 번들에서 완전히 제외됨
+- `DeliveryIcon.tsx`(756KB), `EventIcon.tsx`(611KB), `PickupIcon.tsx`(506KB) 등 대용량 파일 제거
+- `src/assets/svgs/index.ts` 파일을 빈 파일로 변경
 
+## 3. useCallback, useMemo 적용
+### HomeCarousel 최적화
+- 이미지 URL 배열 계산을 `useMemo`로 최적화
+- 인덱스 추적 함수를 `useCallback`으로 래핑하여 재생성 방지
+
+### HomePage 최적화  
+- 슬라이드 컨텐츠 생성을 `useMemo(() => getSlideRankingProducts(), [])`로 최적화
+- 네비게이션 핸들러를 `useCallback`으로 래핑
+
+### ProductDetailPage 최적화
+- 이미지 처리 로직(mainImages, detailImages, reviewImages)을 `useMemo`로 최적화
+- 네비게이션 바 클릭 핸들러를 `useCallback`으로 최적화
+
+## 4. 스크롤 이벤트 리스너 개선
+### 스로틀링 적용
+- `requestAnimationFrame`을 사용한 스로틀링으로 성능 개선
+- `HomePage`, `ProductDetailPage`, `BottomNav` 모든 스크롤 핸들러에 적용
+
+### 이벤트 리스너 최적화
+- `{ passive: true }` 옵션 추가로 스크롤 성능 개선
+- 중복된 DOM 계산 최소화
+
+## 5. 코드 분할 적용
+### React.lazy 도입
+- `pageRoutes.tsx`에서 모든 페이지 컴포넌트를 `React.lazy`로 변경
+- `HomePage`, `ProductDetailPage`, `StoreSearchPage`를 동적 import로 변경
+- `App.tsx`에 `Suspense` 래퍼 추가하여 로딩 상태 처리
+
+- 초기 로드 시 필요한 코드만 로딩
+- 페이지별 코드 분할로 Time to Interactive 개선
+
+## 6. 이미지 레이지 로드 적용
+### LazyImage 컴포넌트 생성
+- `Intersection Observer API`를 사용한 뷰포트 기반 이미지 로딩
+- 50px rootMargin으로 미리 로딩 최적화
+- 페이드 인 효과로 사용자 경험 개선
+
+### HomeCarousel 간격 조정
+- `setInterval` 주기를 500ms에서 1000ms로 변경하여 성능 개선
+
+- **번들 크기 감소**: 대용량 SVG 컴포넌트 제거로 JavaScript 번들 크기 대폭 감소
+- **Function Call 최적화**: 스크롤 이벤트 스로틀링과 useCallback/useMemo 적용으로 불필요한 함수 호출 제거
+- **코드 분할**: 페이지별 동적 로딩으로 초기 로딩 시간 단축
+- **이벤트 최적화**: console.log 제거와 DOM 계산 최소화로 CPU 사용량 감소
+
+최적화 후 점수 : 55점
+FCP : 7.8s
+LCP : 26.6s
+TBT : 140ms
+CLS : 0
+SI : 9.2s
+
+대용량 SVG 컴포넌트들이 모두 제거되어 번들에서 완전히 분리되었고 메인 번들 크기도 많이 개선되었다.

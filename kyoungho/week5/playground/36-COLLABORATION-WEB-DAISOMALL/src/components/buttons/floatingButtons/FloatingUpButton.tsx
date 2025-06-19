@@ -1,4 +1,4 @@
-import { FloatingUpIcon } from '@assets/svgs';
+// SVG 컴포넌트를 실제 SVG 파일로 변경
 import { useEffect, useState, useCallback } from 'react';
 import * as S from './FloatingUpButton.style';
 
@@ -48,7 +48,7 @@ const FloatingUpButton = () => {
       onClick={handleScrollToTop}
       aria-label="페이지 맨 위로 스크롤"
     >
-      <FloatingUpIcon css={S.iconStyle} />
+      <img src="/svgs/floating-up-icon.svg" alt="위로" css={S.iconStyle} />
     </button>
   );
 };

@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { Global, ThemeProvider } from '@emotion/react';
 import theme from '@styles/theme';
 import GlobalStyle from './styles/global';
@@ -22,7 +23,16 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={theme}>
         <Global styles={GlobalStyle} />
-        <RouterProvider router={router} />
+        <Suspense fallback={<div style={{ 
+          display: 'flex', 
+          justifyContent: 'center', 
+          alignItems: 'center', 
+          height: '100vh',
+          fontSize: '18px',
+          color: '#666'
+        }}>로딩 중...</div>}>
+          <RouterProvider router={router} />
+        </Suspense>
       </ThemeProvider>
       <div style={{ fontSize: '16px' }}>
         <ReactQueryDevtools />

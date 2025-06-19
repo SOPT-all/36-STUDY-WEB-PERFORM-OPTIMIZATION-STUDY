@@ -1,5 +1,5 @@
 import * as S from './SearchEmptyResult.style';
-import { NoResultIcon, Caution2Icon } from '@assets/svgs';
+// SVG 컴포넌트를 실제 SVG 파일로 변경
 
 interface SearchEmptyResultProps {
   className?: string;
@@ -12,7 +12,7 @@ const SearchEmptyResult = ({ className }: SearchEmptyResultProps) => {
       <div css={S.upperContainerStyle}>
         {/* 아이콘 + 텍스트 컨테이너 */}
         <div css={S.resultContainerStyle}>
-          <NoResultIcon css={S.iconStyle} />
+          <img src="/svgs/no-result-icon.svg" alt="검색 결과 없음" css={S.iconStyle} />
           <p css={S.noResultTextStyle}>검색결과가 없습니다</p>
         </div>
       </div>
@@ -22,7 +22,7 @@ const SearchEmptyResult = ({ className }: SearchEmptyResultProps) => {
         <div css={S.guideContentContainerStyle}>
           {/* 안내 헤더 */}
           <div css={S.guideHeaderStyle}>
-            <Caution2Icon css={S.cautionIconStyle} />
+            <img src="/svgs/caution2-icon.svg" alt="주의" css={S.cautionIconStyle} />
             <p css={S.guideHeaderTextStyle}>확인해 주세요</p>
           </div>
 

@@ -1,6 +1,5 @@
 import * as S from './PickupDetailsSection.style';
-import PickupTomorrow from '@assets/svgs/PickupTomorrow';
-import QuestionCircle from '@assets/svgs/QuestionCircle';
+// SVG 컴포넌트를 실제 SVG 파일로 변경
 import type { ReactNode } from 'react';
 
 interface TextWithIconProps {
@@ -53,21 +52,21 @@ const PickupDetailsSection = () => {
             text="매장픽업 마감, 지금 결제하면" 
             icon={
               <div css={S.PickupTomorrowContainer}>
-                <PickupTomorrow />
+                <img src="/svgs/pickup-tomorrow.svg" alt="내일 픽업 가능" />
               </div>
             }
-            additionalIcon={<QuestionCircle />}
+            additionalIcon={<img src="/svgs/question-circle.svg" alt="문의" />}
           />
 
           <PickupInfoComponent 
             text="결제 후 상품준비 완료 알림톡(픽업바코드)
 24시간 이내 발송, 최대 2일까지 픽업 가능"
-            icon={<QuestionCircle />}
+            icon={<img src="/svgs/question-circle.svg" alt="문의" />}
           />
           
           <TextWithIconComponent 
             text="픽업 수수료 200원" 
-            additionalIcon={<QuestionCircle />}
+            additionalIcon={<img src="/svgs/question-circle.svg" alt="문의" />}
           />
           
         </div>

@@ -58,7 +58,7 @@ const SearchResultTitle = ({
           type="button"
         >
           <span css={S.sortTextStyle}>{selectedSort}</span>
-          <div css={S.iconWrapper}>
+          <div css={S.iconContainerStyle}>
             <img src="/svgs/small-arrow-down-icon.svg" alt="Arrow Down" css={S.iconStyle} />
           </div>
         </button>

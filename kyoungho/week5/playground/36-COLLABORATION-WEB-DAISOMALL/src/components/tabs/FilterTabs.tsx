@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import * as S from './FilterTabs.style';
 import { css } from '@emotion/react';
-import { XIcon } from '@assets/svgs';
+// SVG 컴포넌트를 실제 SVG 파일로 변경
 
 export type FilterOption =
   | 'like-store'
@@ -76,7 +76,7 @@ const FilterTabs = ({ onChange, selectedTab }: FilterTabsProps) => {
           </div>
           {isSelected(key) && (
             <div css={S.iconWrapper}>
-              <XIcon />
+                                <img src="/svgs/x-icon.svg" alt="삭제" />
             </div>
           )}
         </div>

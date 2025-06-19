@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import * as S from './ProductPageInfo.style';
-import { ShareIcon } from '@assets/svgs';
+// SVG 컴포넌트를 실제 SVG 파일로 변경
 import ProductHeader from './ProductHeader';
 import Rating from './Rating';
 
@@ -33,7 +33,7 @@ const ProductPageInfo = ({
         />
       </section>
       <button type='button' css={S.ShareButton}>
-        <ShareIcon css={S.ShareIcon} />
+        <img src="/svgs/share-icon.svg" alt="공유" css={S.ShareIcon} />
       </button>
     </article>
   );

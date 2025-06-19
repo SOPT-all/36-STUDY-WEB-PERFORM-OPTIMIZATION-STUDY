@@ -2,6 +2,7 @@ import * as H from './HomeSectionCard.style';
 import SectionTitle from '@components/common/SectionTitle/SectionTitle';
 import Divider from '@components/common/divider/Divider';
 import ProductCardVertical from '@components/ProductCard/ProductCardVertical/ProductCardVertical';
+// LazyImage import 제거 (사용하지 않음)
 import ImageCarousel from '@components/ImageCarousel/ImageCarousel';
 import bannerImg1 from '/home-banner-1.webp';
 import bannerImg2 from '/home-banner-2.webp';

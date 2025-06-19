@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { StarIconWhite } from '@assets/svgs';
+// SVG 컴포넌트를 실제 SVG 파일로 변경
 import theme from '@styles/theme';
 
 export interface ProductTagData {
@@ -15,7 +15,7 @@ export const productTags: ProductTagData[] = [
     label: '추천',
     bg: theme.colors['red-01'],
     color: theme.colors.white,
-    icon: <StarIconWhite />,
+    icon: <img src="/svgs/star-icon-white.svg" alt="별점" />,
   },
   { label: '신상', bg: theme.colors['gray-05'], color: theme.colors.primary },
   {

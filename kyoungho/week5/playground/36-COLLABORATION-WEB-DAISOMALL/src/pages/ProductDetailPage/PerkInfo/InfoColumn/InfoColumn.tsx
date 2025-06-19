@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import * as S from './InfoColumn.style';
-import SvgQuestionCircle from '@assets/svgs/QuestionCircle';
+// SVG 컴포넌트를 실제 SVG 파일로 변경
 
 interface BenefitInfo {
   text: string;
@@ -22,7 +22,7 @@ const InfoColumn = ({ pointInfo, benefitInfo }: InfoColumnProps) => {
             <p css={S.benefitInfoText}>{benefit.text}</p>
             {benefit.hasIcon && (
               <figure css={S.iconContainer}>
-                <SvgQuestionCircle />
+                <img src="/svgs/question-circle.svg" alt="문의" />
               </figure>
             )}
           </li>

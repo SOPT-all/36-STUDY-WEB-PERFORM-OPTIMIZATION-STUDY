@@ -1,8 +1,11 @@
+import { lazy } from 'react';
 import type { RouteType } from '@app-types/routeType';
-import HomePage from '@pages/HomePage/HomePage';
-import ProductDetailPage from '@pages/ProductDetailPage/ProductDetailPage';
-import StoreSearchPage from '@pages/StoreSearchPage/StoreSearchPage';
 import routePath from '@routes/routePath';
+
+// 페이지 컴포넌트들을 lazy loading으로 코드 분할
+const HomePage = lazy(() => import('@pages/HomePage/HomePage'));
+const ProductDetailPage = lazy(() => import('@pages/ProductDetailPage/ProductDetailPage'));
+const StoreSearchPage = lazy(() => import('@pages/StoreSearchPage/StoreSearchPage'));
 
 const pageRoutes: RouteType[] = [
   {

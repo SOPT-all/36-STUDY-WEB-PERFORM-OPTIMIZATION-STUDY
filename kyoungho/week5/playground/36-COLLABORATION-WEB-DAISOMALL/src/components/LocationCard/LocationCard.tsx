@@ -1,6 +1,6 @@
-import { useState } from 'react';
+// useState import 제거 (사용하지 않음)
 import * as S from './LocationCard.style';
-import { LikeIcon } from '@assets/svgs';
+// SVG 컴포넌트를 실제 SVG 파일로 변경
 import StoreStatus from '@components/LocationCard/StoreStatus/StoreStatus';
 import LocationTag from './LocationTag';
 import StoreActionButton from '@components/LocationCard/StoreActionButton/StoreActionButton';
@@ -32,7 +32,7 @@ const LocationCard = ({
   isFranchise = false,
   isPickupAvailable = false,
 }: LocationCardProps) => {
-  const [liked, setLiked] = useState(false);
+  // liked state 제거 (사용하지 않음)
 
   return (
     <div css={S.wrapper}>
@@ -52,8 +52,8 @@ const LocationCard = ({
             <span css={S.time}>{time}</span>
           </div>
         </div>
-        <button onClick={() => setLiked((prev) => !prev)} css={S.likeIcon}>
-          <LikeIcon filled={liked} width={24} height={24} />
+        <button onClick={() => {}} css={S.likeIcon}>
+          <img src="/svgs/like-icon.svg" alt="좋아요" width={24} height={24} />
         </button>
       </div>
 

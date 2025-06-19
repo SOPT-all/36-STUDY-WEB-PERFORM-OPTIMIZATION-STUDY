@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { useState, useEffect, useRef } from 'react';
+// React hooks import 제거 (사용하지 않음)
 import SectionTitle from '@components/common/SectionTitle/SectionTitle';
 import * as S from './Review.style';
 import RenderStars from './RenderStars';
@@ -25,27 +25,7 @@ const Review = ({ reviewData, productData, reviewImages = [] }: ReviewProps) => 
   // 실제 리뷰 데이터 또는 빈 배열
   const reviews = reviewData?.reviews || [];
 
-  console.log('Review 컴포넌트 데이터:', {
-    averageRating,
-    reviewCount,
-    reviewsLength: reviews.length,
-    reviewImagesLength: reviewImages.length
-  });
 
-  // 전체 리뷰 이미지 수집 과정 상세 로그
-  console.log('=== 전체 리뷰 이미지 수집 분석 ===');
-  reviews.forEach((review, index) => {
-    console.log(`리뷰 ${index + 1}:`, {
-      reviewId: review.reviewId,
-      nickname: review.nickname,
-      hasProfileImage: !!review.profileImageUrl,
-      profileImageUrl: review.profileImageUrl,
-      reviewImagesCount: review.images?.length || 0,
-      reviewImageUrls: review.images?.map(img => img.imageUrl) || []
-    });
-  });
-  console.log('PhotoScrollList에 전달될 전체 이미지들:', reviewImages);
-  console.log('====================================');
 
   return (
     <div css={S.Wrapper}>
@@ -54,7 +34,7 @@ const Review = ({ reviewData, productData, reviewImages = [] }: ReviewProps) => 
           title1="리뷰"
           title2={reviewCount.toString()}
           title2Color="#D70011"
-          onClickAll={() => console.log('전체보기 클릭')}
+          onClickAll={() => {}}
         />
 
         <div css={S.RatingContainer}>
@@ -74,13 +54,13 @@ const Review = ({ reviewData, productData, reviewImages = [] }: ReviewProps) => 
         <div css={S.MiddleContainer}>
           <SectionTitle
             title1="사진&동영상"
-            onClickAll={() => console.log('전체보기 클릭')}
+            onClickAll={() => {}}
           />
         </div>
         <PhotoScrollList 
           isLoading={false}
           imageUrls={reviewImages}
-          onMoreClick={() => console.log('사진&동영상 더보기 클릭')}
+          onMoreClick={() => {}}
         />
       </div>
 
@@ -101,17 +81,6 @@ const Review = ({ reviewData, productData, reviewImages = [] }: ReviewProps) => 
         {/* 실제 API 리뷰 데이터로 렌더링 */}
         {reviews.length > 0 ? (
           reviews.slice(0, 3).map((review, index) => {
-            // 각 리뷰의 이미지 정보 콘솔 출력
-            console.log(`=== 리뷰 ${index + 1} (ID: ${review.reviewId}) ===`);
-            console.log('닉네임:', review.nickname);
-            console.log('프로필 사진 URL:', review.profileImageUrl);
-            console.log('별점:', review.rating);
-            console.log('내용:', review.content);
-            console.log('리뷰 이미지들:', review.images);
-            console.log('리뷰 이미지 URL들:', review.images?.map(img => img.imageUrl) || []);
-            console.log('리뷰 이미지 개수:', review.images?.length || 0);
-            console.log('----------------------------------');
-            
             return (
               <div key={review.reviewId}>
                 <Comment

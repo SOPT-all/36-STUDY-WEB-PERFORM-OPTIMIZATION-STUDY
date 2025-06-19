@@ -13,7 +13,7 @@ import SectionTitle from '@components/common/SectionTitle/SectionTitle';
 import * as S from './ProductDetailPage.style';
 import theme from '@styles/theme';
 import Divider from '@components/common/divider/Divider';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import BottomCarousel from './components/Carousel/BottomCarousel';
 import Review from './components/Review/Review';
@@ -65,8 +65,6 @@ const ProductDetailPage = () => {
       try {
         setIsLoading(true);
         const id = productId ? parseInt(productId) : 1; // ProductId가 없으면 기본값 1 사용
-        console.log('API 요청 - productId:', id);
-
         // 상품 정보, 리뷰, 브랜드별 상품, 인기 상품, 카테고리별 상품을 병렬로 호출
         const [
           productResponse,
@@ -81,12 +79,6 @@ const ProductDetailPage = () => {
           getPopularProducts(), // 인기 상품 조회
           getCategoryProducts('BEAUTY_HYGIENE', 0, 20), // 카테고리별 상품 조회
         ]);
-
-        console.log('상품 API 응답:', productResponse);
-        console.log('리뷰 API 응답:', reviewResponse);
-        console.log('브랜드별 상품 API 응답:', brandProductsResponse);
-        console.log('인기 상품 API 응답:', popularProductsResponse);
-        console.log('카테고리별 상품 API 응답:', categoryProductsResponse);
 
         setProductData(productResponse);
         setReviewData(reviewResponse);
@@ -107,22 +99,35 @@ const ProductDetailPage = () => {
     setIsImageExpanded(true);
   };
 
+  // 스크롤 핸들러를 useCallback과 스로틀링으로 최적화
+  const handleScroll = useCallback(() => {
+    if (navBarRef.current) {
+      const navBarPosition = navBarRef.current.getBoundingClientRect().top;
+      setIsNavBarSticky(navBarPosition <= 0);
+    }
+  }, []);
+
   useEffect(() => {
-    const handleScroll = () => {
-      if (navBarRef.current) {
-        const navBarPosition = navBarRef.current.getBoundingClientRect().top;
-        setIsNavBarSticky(navBarPosition <= 0);
+    // 스로틀링을 위한 타이머
+    let ticking = false;
+    const throttledScrollHandler = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', throttledScrollHandler, { passive: true });
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', throttledScrollHandler);
     };
-  }, []);
+  }, [handleScroll]);
 
-  // 네비게이션 바 클릭 핸들러 추가
-  const handleNavTabClick = (tabId: number) => {
+  // 네비게이션 바 클릭 핸들러를 useCallback으로 최적화
+  const handleNavTabClick = useCallback((tabId: number) => {
     const navBarHeight = navBarRef.current?.offsetHeight || 0;
 
     switch (tabId) {
@@ -153,7 +158,7 @@ const ProductDetailPage = () => {
         }
         break;
     }
-  };
+  }, []);
 
   // 로딩 중일 때 표시 (모든 Hook 호출 후)
   if (isLoading) {
@@ -164,39 +169,25 @@ const ProductDetailPage = () => {
   const productTitle = productData?.productName || '';
 
   // API 응답 구조에 정확히 맞춘 이미지 처리
-  console.log('전체 productData:', productData);
-  console.log('productImages 전체:', productData?.productImages);
-  console.log('main 배열:', productData?.productImages?.main);
-  console.log('detail 배열:', productData?.productImages?.detail);
 
-  // Main 이미지들 (2번 캐러셀용)
-  const mainImages =
+  // 이미지 처리를 useMemo로 최적화하여 불필요한 재계산 방지
+  const mainImages = useMemo(() => 
     productData?.productImages?.main
       ?.map((img) => img.imageUrl)
-      .filter(Boolean) || [];
+      .filter(Boolean) || [], [productData?.productImages?.main]);
 
-  // Detail 이미지들 (11번 상세 이미지용)
-  const detailImages =
+  const detailImages = useMemo(() =>
     productData?.productImages?.detail
       ?.map((img) => img.imageUrl)
-      .filter(Boolean) || [];
+      .filter(Boolean) || [], [productData?.productImages?.detail]);
 
-  // 리뷰 이미지 수집 및 처리
-  const reviewImages =
+  const reviewImages = useMemo(() =>
     reviewData?.reviews?.flatMap(
       (review) =>
         review.images?.map((img) => img.imageUrl).filter(Boolean) || [],
-    ) || [];
+    ) || [], [reviewData?.reviews]);
 
-  console.log('처리된 이미지 배열:', {
-    'main 이미지들 (2번 캐러셀용)': mainImages,
-    'main 이미지 개수': mainImages.length,
-    'detail 이미지들 (11번 상세용)': detailImages,
-    'detail 이미지 개수': detailImages.length,
-    '리뷰 이미지들 (4번 캐러셀용)': reviewImages,
-    '리뷰 이미지 개수': reviewImages.length,
-    '전체 리뷰 개수': reviewData?.reviews?.length || 0,
-  });
+
 
   return (
     <div css={S.productDetailStyle}>
@@ -230,7 +221,7 @@ const ProductDetailPage = () => {
       <ReviewCarousel
         isLoading={isLoading}
         imageUrls={reviewImages}
-        onMoreClick={() => console.log('리뷰 더보기 클릭')}
+        onMoreClick={() => {}}
       />
 
       <Divider />
@@ -250,9 +241,7 @@ const ProductDetailPage = () => {
         <div css={S.recommendedProductsStyle}>
           <SectionTitle
             title1="다른 고객이 함께 본 상품"
-            onClickAll={() =>
-              console.log('다른 고객이 함께 본 상품 전체보기 클릭')
-            }
+            onClickAll={() => {}}
           />
           <div css={S.productsHorizontalStyle}>
             {popularProductsData.pages[0]
@@ -356,7 +345,7 @@ const ProductDetailPage = () => {
             title1="VT"
             title2="브랜드 상품 모아보기"
             title1Color={theme.colors['gray-03']}
-            onClickAll={() => console.log('브랜드 상품 모아보기 클릭')}
+            onClickAll={() => {}}
             image={
               <img
                 src="/VT.webp"
@@ -409,9 +398,7 @@ const ProductDetailPage = () => {
           <div css={S.recommendedProductsStyle}>
             <SectionTitle
               title1="이런 기초스킨케어 상품은 어때요?"
-              onClickAll={() =>
-                console.log('이런 기초스킨케어 상품은 어때요? 전체보기 클릭')
-              }
+                          onClickAll={() => {}}
             />
             <div css={S.productsHorizontalStyle}>
               {categoryProductsData.products.slice(0, 5).map((product) => (

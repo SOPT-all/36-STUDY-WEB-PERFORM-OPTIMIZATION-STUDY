@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import * as H from '@pages/HomePage/HomeSectionCard/HomeSectionCard.style';
 import HomeCarousel from '@components/homeCarousel/HomeCarousel';
 import QuickMenuBar from '@pages/HomePage/quickMenuBar/QuickMenuBar';
@@ -20,23 +20,40 @@ import { FOURTH_PRODUCTS } from '@pages/HomePage/mockData/section4Data';
 const HomePage = () => {
   const navigate = useNavigate();
   const [rankingPage, setRankingPage] = useState(1);
-  const slideContents = getSlideRankingProducts();
+  
+  // 슬라이드 컨텐츠를 useMemo로 최적화
+  const slideContents = useMemo(() => getSlideRankingProducts(), []);
 
-  const handleStoreSearchClick = () => {
+  // 네비게이션 핸들러를 useCallback으로 최적화
+  const handleStoreSearchClick = useCallback(() => {
     navigate('/store-list', { state: { fromQuickMenu: true } });
-  };
+  }, [navigate]);
   const [showHeader, setShowHeader] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      setShowHeader(currentScrollY < lastScrollY);
-      setLastScrollY(currentScrollY);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+  // 스크롤 핸들러를 useCallback과 디바운싱으로 최적화
+  const handleScroll = useCallback(() => {
+    const currentScrollY = window.scrollY;
+    setShowHeader(currentScrollY < lastScrollY);
+    setLastScrollY(currentScrollY);
   }, [lastScrollY]);
+
+  useEffect(() => {
+    // 디바운싱을 위한 타이머
+    let ticking = false;
+    const throttledScrollHandler = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', throttledScrollHandler, { passive: true });
+    return () => window.removeEventListener('scroll', throttledScrollHandler);
+  }, [handleScroll]);
 
   return (
     <div css={H.homeWrapper}>

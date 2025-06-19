@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import * as T from './TodayCard.style';
-import { BookmarkIcon } from '@assets/svgs';
+// SVG 컴포넌트를 실제 SVG 파일로 변경
 
 interface TodayCardProps {
   imageUrl: string;
@@ -39,7 +39,7 @@ const TodayCard = ({
               ]}
               aria-label="북마크"
             >
-              <BookmarkIcon width={20} height={20} />
+              <img src="/svgs/bookmark-icon.svg" alt="북마크" width={20} height={20} />
             </button>
           </div>
 

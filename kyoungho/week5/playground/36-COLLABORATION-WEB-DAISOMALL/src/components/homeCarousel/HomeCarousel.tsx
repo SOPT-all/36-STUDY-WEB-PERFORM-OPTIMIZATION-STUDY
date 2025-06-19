@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import ImageCarousel from '@components/ImageCarousel/ImageCarousel';
 import OrderIndicator from '@components/OrderIndicator/OrderIndicator';
 import * as S from './HomeCarousel.style';
@@ -42,8 +42,8 @@ const HomeCarousel = ({
 }: HomeCarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // ImageCarousel에 전달할 이미지 URL 배열
-  const imageUrls = items.map((item) => item.imageUrl);
+  // ImageCarousel에 전달할 이미지 URL 배열 - useMemo로 최적화
+  const imageUrls = useMemo(() => items.map((item) => item.imageUrl), [items]);
 
   // 인덱스 추적 함수를 useCallback으로 최적화
   const trackActiveSlide = useCallback(() => {
@@ -63,7 +63,7 @@ const HomeCarousel = ({
   useEffect(() => {
     trackActiveSlide();
 
-    const intervalId = setInterval(trackActiveSlide, 500);
+    const intervalId = setInterval(trackActiveSlide, 1000); // 500ms에서 1000ms로 변경하여 성능 개선
 
     // MutationObserver 설정 최적화
     const observer = new MutationObserver(trackActiveSlide);
