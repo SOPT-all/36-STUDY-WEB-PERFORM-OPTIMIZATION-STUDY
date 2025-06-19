@@ -22,7 +22,7 @@ const InfoColumn = ({ pointInfo, benefitInfo }: InfoColumnProps) => {
             <p css={S.benefitInfoText}>{benefit.text}</p>
             {benefit.hasIcon && (
               <figure css={S.iconContainer}>
-                <img src="/svgs/question-circle.svg" alt="문의" />
+                <img src="/svgs/QuestionCircle.svg" alt="문의" />
               </figure>
             )}
           </li>
