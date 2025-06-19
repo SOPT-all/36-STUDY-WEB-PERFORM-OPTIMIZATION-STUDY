@@ -67,5 +67,45 @@ Speed Index : 20.6 s
 
 ---
 
+Performance Panel을 통해 분석을 해봤고, Evaluate Script 막대가 긴 것을 확인하였다.
+
+- 빌드된 `index-BdkRk-uZ.js` 파일이 **3.9MB**로 과도하게 큰 번들 크기
+- 일반적인 웹앱 번들 크기(100-500KB)보다 8-40배 큰 사이즈
+- 브라우저가 거대한 스크립트를 파싱하고 실행하는데 상당한 시간 소요
+
+번들 크기가 큰 이유는, 
+- **무거운 SVG 컴포넌트들**: `DeliveryIcon.tsx`(756KB), `EventIcon.tsx`(611KB), `PickupIcon.tsx`(506KB) 등이 JavaScript 번들에 포함
+- **코드 분할 부재**: `pageRoutes.tsx`에서 모든 페이지를 동기 import로 한 번에 로드
+- **라이브러리 의존성**: `@emotion/react`, `@tanstack/react-query`, `react-slick` 등 무거운 라이브러리들
+- **정적 Mock 데이터**: 모든 상품 데이터가 번들에 정적으로 포함
+
+두 번째로 Function Call 막대가 길었으며, 원인 분석을 해보았다.
+
+과도한 스크롤 이벤트 리스너
+- `HomePage.tsx`, `ProductDetailPage.tsx`, `BottomNav.tsx`, `FloatingUpButton.tsx`에서 동시에 scroll 이벤트 감지
+- 스크롤할 때마다 모든 핸들러가 동시에 실행되어 `getBoundingClientRect()` 같은 DOM 계산 반복 수행
+
+HomeCarousel의 추적 코드
+```typescript
+// 500ms마다 실행되는 setInterval
+const intervalId = setInterval(trackActiveSlide, 500);
+// DOM 변경시마다 실행되는 MutationObserver  
+const observer = new MutationObserver(trackActiveSlide);
+```
+이중 추적 메커니즘으로 불필요한 함수 호출이 급증하였다.
+
+console.log가 많은 부분도 있었다.
+- `ProductDetailPage.tsx`에서만 15개 이상의 console.log
+- `Review.tsx`에서 반복문 내부까지 포함하여 10개 이상 추가
+- 프로덕션에서도 실행되는 디버깅 코드로 CPU 시간 소모
+
+빈번한 리렌더링도 확인할 수 있었다
+- 스크롤할 때마다 여러 state가 동시에 업데이트
+- `useCallback`/`useMemo` 부재로 불필요한 함수 재생성
+- 의존성 배열이 자주 변경되어 effect 재실행
+
+---
+
+
 
 
