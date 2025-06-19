@@ -160,11 +160,6 @@ const ProductDetailPage = () => {
     }
   }, []);
 
-  // 로딩 중일 때 표시 (모든 Hook 호출 후)
-  if (isLoading) {
-    return;
-  }
-
   // API에서 받아온 데이터만 사용 (더미 데이터 제거)
   const productTitle = productData?.productName || '';
 
@@ -186,6 +181,32 @@ const ProductDetailPage = () => {
       (review) =>
         review.images?.map((img) => img.imageUrl).filter(Boolean) || [],
     ) || [], [reviewData?.reviews]);
+
+  // 로딩 중일 때 표시 (모든 Hook 호출 후)
+  if (isLoading) {
+    return (
+      <div css={S.productDetailStyle}>
+        <Header
+          showBackButton={true}
+          showTitle={true}
+          title="로딩 중..."
+          showSearchIcon={true}
+          showCartIcon={true}
+          showHomeIcon={true}
+        />
+        <div style={{ 
+          display: 'flex', 
+          justifyContent: 'center', 
+          alignItems: 'center', 
+          height: '50vh',
+          fontSize: '1.6rem',
+          color: '#666'
+        }}>
+          상품 정보를 불러오는 중...
+        </div>
+      </div>
+    );
+  }
 
 
 
