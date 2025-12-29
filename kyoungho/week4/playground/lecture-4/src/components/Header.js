@@ -5,9 +5,8 @@ import { setCategory } from '../redux/category';
 
 function Header() {
   const dispatch = useDispatch();
-  const { category } = useSelector(state => ({
-    category: state.category.category,
-  }));
+  // 방법 1: 단일 원시 값 반환으로 불필요한 리렌더링 방지
+  const category = useSelector(state => state.category.category);
 
   return (
     <HeaderWrap>

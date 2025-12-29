@@ -1,18 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
-import { showModal } from '../redux/imageModal';
+import { showModal, setBgColor } from '../redux/imageModal';
+import { getAverageColorOfImage } from '../utils/getAverageColorOfImage';
 
 function PhotoItem({ photo: { urls, alt } }) {
   const dispatch = useDispatch();
 
-  const openModal = () => {
+  const openModal = (e) => {
+    const avgColor = getAverageColorOfImage(e.target);
+    dispatch(setBgColor(avgColor));
     dispatch(showModal({ src: urls.full, alt }));
   };
 
   return (
     <ImageWrap>
-      <Image src={urls.small + '&t=' + new Date().getTime()} alt={alt} onClick={openModal} />
+      <Image src={urls.small + '&t=' + new Date().getTime()} alt={alt} onClick={openModal} crossOrigin="anonymous" />
     </ImageWrap>
   );
 }

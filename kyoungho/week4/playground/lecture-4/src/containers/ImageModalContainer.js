@@ -3,12 +3,11 @@ import { useSelector } from 'react-redux';
 import ImageModal from '../components/ImageModal';
 
 function ImageModalContainer() {
-  const { modalVisible, bgColor, src, alt } = useSelector(state => ({
-    modalVisible: state.imageModal.modalVisible,
-    bgColor: state.imageModal.bgColor,
-    src: state.imageModal.src,
-    alt: state.imageModal.alt,
-  }));
+  // 방법 1: 개별 원시 값으로 분리하여 불필요한 리렌더링 방지
+  const modalVisible = useSelector(state => state.imageModal.modalVisible);
+  const bgColor = useSelector(state => state.imageModal.bgColor);
+  const src = useSelector(state => state.imageModal.src);
+  const alt = useSelector(state => state.imageModal.alt);
 
   return (
     <ImageModal

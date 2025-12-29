@@ -28,7 +28,6 @@ const { reducer: imageModalReducer } = createSlice({
       state.modalVisible = true;
       state.src = action.src;
       state.alt = action.alt;
-      state.bgColor = { r: 0, g: 0, b: 0 };
     },
     HIDE_MODAL: state => {
       state.modalVisible = false;
